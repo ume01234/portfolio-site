@@ -1,3 +1,6 @@
+// ビルド後処理: 日本語ページの <html lang="en"> を <html lang="ja"> に修正する
+// Next.js の静的エクスポートではルートlayoutの lang 属性が全ページに適用されるため、
+// ビルド後に out/ja/ 配下のHTMLファイルを書き換えて対応している
 import { readdir, readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 

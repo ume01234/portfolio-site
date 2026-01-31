@@ -1,3 +1,7 @@
+// クライアント側レイアウト
+// - オープニングアニメーションの表示制御
+// - 言語切替時はオープニングをスキップ（__skipOpening フラグで判定）
+// - ページリロード時はオープニングを表示
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -15,12 +19,14 @@ export default function LayoutClient({
 }) {
   const [showContent, setShowContent] = useState(false);
   const [skipOpening, setSkipOpening] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false); // サーバー/クライアントの描画ずれ防止用
 
+  // HTMLの lang 属性を動的に更新
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // 言語切替時は LanguageSwitcher が __skipOpening を設定するので、オープニングをスキップ
   useEffect(() => {
     if ((window as any).__skipOpening) {
       setShowContent(true);

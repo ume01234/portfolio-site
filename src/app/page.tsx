@@ -1,3 +1,5 @@
+// ルートページ（ / へのアクセスを /en/ にリダイレクトする）
+// noscript タグは JavaScript が無効な環境向けのフォールバック
 'use client';
 
 import { useEffect } from 'react';

@@ -1,3 +1,7 @@
+// 言語別レイアウト（/en/... と /ja/... の共通親）
+// - generateStaticParams: ビルド時に /en と /ja の2つを生成
+// - generateMetadata: 言語ごとのSEOメタデータ（title, description, OGP, hreflang等）
+// - structuredData: Google検索向けの人物情報（JSON-LD）
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { socialLinks, emailAddress } from '@/lib/data';
@@ -7,10 +11,12 @@ const siteUrl = 'https://z-ume01234.pages.dev';
 
 type Lang = 'en' | 'ja';
 
+// ビルド時に /en と /ja の2パターンの静的HTMLを生成する
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'ja' }];
 }
 
+// 言語ごとのSEOメタデータを生成（title, description, OGP, canonical, hreflang等）
 export async function generateMetadata({
   params,
 }: {
@@ -89,6 +95,7 @@ export default function LangLayout({
 }) {
   const lang = params.lang as Lang;
 
+  // Google検索向けの人物構造化データ（JSON-LD）- 画面には非表示
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Person',

@@ -1,3 +1,6 @@
+// Blog一覧ページのレイアウト
+// - generateMetadata: SEOメタデータ（title, OGP, hreflang, og:locale等）
+// - パンくずリスト構造化データ（ホーム > Blog）
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { getData } from '@/lib/data';
@@ -26,6 +29,7 @@ export async function generateMetadata({
       title: `${data.sections.blog} - portfolio-Hashizume`,
       description,
       url: `${siteUrl}/${lang}/blog`,
+      locale: isJa ? 'ja_JP' : 'en_US',
       type: 'website',
       images: [
         {

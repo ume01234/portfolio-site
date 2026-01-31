@@ -1,3 +1,7 @@
+// 作品詳細ページ
+// - generateStaticParams: 全言語×全作品の組み合わせで静的HTML生成
+// - generateMetadata: 作品ごとのSEOメタデータ（title, OGP, hreflang等）
+// - パンくずリスト構造化データ（ホーム > Works > 作品名）
 import { getData } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -13,6 +17,7 @@ interface WorkDetailPageProps {
   };
 }
 
+// ビルド時に全言語×全作品の組み合わせで静的HTMLを生成する
 export function generateStaticParams() {
   const data = getData('en');
   const langs = ['en', 'ja'];
@@ -24,6 +29,7 @@ export function generateStaticParams() {
   );
 }
 
+// 作品ごとのSEOメタデータ（title, OGP, canonical, hreflang, og:locale等）
 export async function generateMetadata({ params }: WorkDetailPageProps): Promise<Metadata> {
   const lang = params.lang as 'en' | 'ja';
   const data = getData(lang);
@@ -42,6 +48,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
       title: work.title,
       description: work.description,
       url: `${siteUrl}/${lang}/works/${work.id}`,
+      locale: lang === 'ja' ? 'ja_JP' : 'en_US',
       type: 'website',
       images: [
         {

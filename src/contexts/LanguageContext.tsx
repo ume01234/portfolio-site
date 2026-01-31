@@ -1,3 +1,6 @@
+// 言語コンテキスト
+// URLの言語プレフィックス（/en/ or /ja/）から決まった言語を各コンポーネントに共有する
+// 言語の切り替え自体は LanguageSwitcher がURLナビゲーションで行う
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';

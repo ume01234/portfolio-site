@@ -1,3 +1,5 @@
+// サイトマップ生成（sitemap.xml）
+// 全ページを /en と /ja の両方で出力し、検索エンジンにクロール対象を伝える
 import { MetadataRoute } from 'next';
 import { getData } from '@/lib/data';
 

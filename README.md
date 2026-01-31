@@ -28,23 +28,29 @@
 
 ```
 src/
-├── app/              # Next.js App Router
-│   ├── activities/   # 取り組み一覧ページ
-│   ├── blog/         # ブログ一覧ページ
-│   ├── works/        # プロジェクト一覧・詳細ページ
-│   ├── layout.tsx    # ルートレイアウト（メタデータ、構造化データ）
-│   ├── page.tsx      # トップページ
-│   ├── robots.ts     # robots.txt生成
-│   └── sitemap.ts    # サイトマップ生成
-├── components/       # 再利用可能なコンポーネント
+├── app/                    # Next.js App Router
+│   ├── layout.tsx          # ルートレイアウト（最小限、CSSのみ）
+│   ├── page.tsx            # ルート（/en/ へリダイレクト）
+│   ├── [lang]/             # 言語別ルート（/en/..., /ja/...）
+│   │   ├── layout.tsx      # 言語別メタデータ・構造化データ（SEO）
+│   │   ├── layout-client.tsx  # クライアント側レイアウト（オープニング制御）
+│   │   ├── page.tsx        # トップページ
+│   │   ├── works/          # プロジェクト一覧・詳細ページ
+│   │   ├── blog/           # ブログ一覧ページ
+│   │   └── activities/     # 取り組み一覧ページ
+│   ├── robots.ts           # robots.txt生成
+│   └── sitemap.ts          # サイトマップ生成（両言語対応）
+├── components/             # 再利用可能なコンポーネント
 │   ├── LiquidBackground.tsx    # コーヒー液体の波打つ背景アニメーション
 │   ├── OpeningAnimation.tsx    # エントリー時のアニメーション
-│   ├── LanguageSwitcher.tsx    # 言語切り替えボタン
+│   ├── LanguageSwitcher.tsx    # 言語切り替えボタン（URL切替方式）
 │   └── ...
-├── contexts/         # React Context
-│   └── LanguageContext.tsx     # 言語管理
-└── lib/              # ユーティリティ・データ
-    └── data.ts       # プロフィール、Works、Blog等のデータ（多言語対応）
+├── contexts/               # React Context
+│   └── LanguageContext.tsx  # 言語コンテキスト（URLから言語を共有）
+└── lib/                    # ユーティリティ・データ
+    └── data.ts             # プロフィール、Works、Blog等のデータ（多言語対応）
+scripts/
+└── postbuild.mjs           # ビルド後処理（日本語ページのhtml lang属性修正）
 ```
 
 ## セットアップ
@@ -92,7 +98,7 @@ Cloudflare Pagesへの自動デプロイはGitHub Actionsで設定されてい�
 ## 主な実装の特徴
 
 - **スクロール連動アニメーション**: `requestAnimationFrame`を使用してスクロール進捗を計算
-- **多言語対応**: `LanguageContext`でグローバルな言語状態を管理、`localStorage`に保存
+- **多言語対応**: URLプレフィックス方式（`/en/...`, `/ja/...`）で言語を管理、全ページを両言語で静的生成
 - **静的サイト生成**: `output: 'export'`を使用、動的ルートは`generateStaticParams()`で事前生成
-- **SEO最適化**: Schema.orgの`Person`タイプの構造化データ、サイトマップ、robots.txtを実装
+- **SEO最適化**: hreflang、canonical、og:locale、パンくずリスト構造化データ、Person構造化データ、サイトマップ、robots.txtを実装
 

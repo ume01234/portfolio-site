@@ -1,3 +1,6 @@
+// 言語切替ボタン（画面右上に固定表示）
+// URLの /en/ ↔ /ja/ を入れ替えてナビゲーションする
+// __skipOpening フラグを立てることで、切替時にオープニングアニメーションをスキップする
 'use client';
 
 import { motion } from 'framer-motion';
@@ -12,7 +15,7 @@ export default function LanguageSwitcher() {
   const toggleLanguage = () => {
     const targetLang = language === 'en' ? 'ja' : 'en';
     const newPath = pathname.replace(/^\/(en|ja)/, `/${targetLang}`);
-    (window as any).__skipOpening = true;
+    (window as any).__skipOpening = true; // オープニングアニメーションをスキップするフラグ
     router.push(newPath);
   };
 
