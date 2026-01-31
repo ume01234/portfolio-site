@@ -181,7 +181,7 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
               className="text-[#3e2723]/30 text-xs tracking-wide"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
+              transition={{ delay: 1 }}
             >
               Click to skip
             </motion.div>
