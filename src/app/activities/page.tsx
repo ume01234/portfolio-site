@@ -11,15 +11,15 @@ export default function ActivitiesPage() {
   const data = getData(language);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-coffee-cream">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-space-dark/80 backdrop-blur-sm border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link href="/">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               {data.sections.back}
@@ -29,32 +29,29 @@ export default function ActivitiesPage() {
       </header>
 
       {/* Content */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-bold mb-16"
+            className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso"
           >
             {data.sections.activities}
           </motion.h1>
 
-          <div className="space-y-16">
+          <div className="space-y-2">
             {data.activities.map((activity, index) => (
               <motion.article
                 key={activity.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-colors"
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all"
               >
-                <div className="w-full h-64 bg-white/10 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-white/50 text-sm">Thumbnail</span>
-                </div>
-                <h2 className="text-3xl font-semibold mb-4">{activity.title}</h2>
-                <p className="text-white/80 leading-relaxed text-lg">{activity.description}</p>
+                <h2 className="text-lg font-semibold text-coffee-espresso mb-2">{activity.title}</h2>
+                <p className="text-sm text-coffee-dark/70 leading-relaxed">{activity.description}</p>
               </motion.article>
             ))}
           </div>
@@ -63,4 +60,3 @@ export default function ActivitiesPage() {
     </main>
   );
 }
-

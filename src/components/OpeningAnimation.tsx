@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface OpeningAnimationProps {
@@ -9,18 +9,40 @@ interface OpeningAnimationProps {
 
 export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) {
   const [isFinished, setIsFinished] = useState(false);
+  const hasCompleted = useRef(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const finishAnimation = useCallback(() => {
+    if (hasCompleted.current) return;
+    hasCompleted.current = true;
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    if (fadeTimerRef.current) {
+      clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = null;
+    }
+
+    setIsFinished(true);
+    fadeTimerRef.current = setTimeout(onComplete, 800);
+  }, [onComplete]);
 
   // アニメーション全体のシーケンス管理
   useEffect(() => {
     // 合計時間が経過したら完了通知を送る
     // 線画(1.5s) + 注ぎ(0.5s) + 溜まる(2.0s) + 余韻(0.5s) = 約4.5s
-    const timer = setTimeout(() => {
-      setIsFinished(true);
-      setTimeout(onComplete, 800); // フェードアウトの時間待機
+    timerRef.current = setTimeout(() => {
+      finishAnimation();
     }, 4500);
 
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (fadeTimerRef.current) clearTimeout(fadeTimerRef.current);
+    };
+  }, [finishAnimation]);
 
   // カップの形状（パスデータ）
   const cupPath = "M 30 40 L 30 85 Q 30 100 45 100 L 75 100 Q 90 100 90 85 L 90 40";
@@ -34,7 +56,8 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }} // 完了時にふわっと消える
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#f5f0e6]" // 背景色: Latte/Cream
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#f5f0e6] cursor-pointer" // 背景色: Latte/Cream
+          onClick={finishAnimation}
         >
           <div className="relative w-64 h-64">
             <svg
@@ -60,13 +83,13 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
                 stroke="#2c1810"
                 strokeWidth="4"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ 
-                  pathLength: [0, 1, 1], 
+                animate={{
+                  pathLength: [0, 1, 1],
                   opacity: [0, 1, 0], // 注ぎ終わったら消える
                   y: [0, 0, 15] // 少し下に落ちる動き
                 }}
-                transition={{ 
-                  duration: 2.5, 
+                transition={{
+                  duration: 2.5,
                   times: [0, 0.2, 1], // 最初の20%で出現、最後は消える
                   delay: 1.2, // カップが描かれ始めてから注ぐ
                   ease: "linear"
@@ -80,13 +103,13 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
                   fill="url(#liquid-gradient)"
                   initial={{ y: 0 }}
                   animate={{ y: -65 }} // 下から上へ水位上昇
-                  transition={{ 
-                    duration: 2.0, 
+                  transition={{
+                    duration: 2.0,
                     delay: 1.5, // 注ぎ始めと同期
-                    ease: "easeInOut" 
+                    ease: "easeInOut"
                   }}
                 />
-                
+
                 {/* 液面のゆらぎ（波） */}
                 <motion.path
                   d="M 0 0 Q 60 10 120 0"
@@ -143,16 +166,26 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
               ))}
             </svg>
           </div>
-          
-          {/* テキスト（オプション：進捗を表示したければ） */}
-          <motion.div
-             className="absolute bottom-10 text-[#3e2723] font-serif tracking-widest text-sm"
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             transition={{ delay: 1 }}
-          >
-             BREWING...
-          </motion.div>
+
+          {/* テキスト */}
+          <div className="absolute bottom-10 flex flex-col items-center gap-2">
+            <motion.div
+              className="text-[#3e2723] font-serif tracking-widest text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              BREWING...
+            </motion.div>
+            <motion.div
+              className="text-[#3e2723]/30 text-xs tracking-wide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2 }}
+            >
+              Click to skip
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
