@@ -1,13 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ja' : 'en');
+    const targetLang = language === 'en' ? 'ja' : 'en';
+    const newPath = pathname.replace(/^\/(en|ja)/, `/${targetLang}`);
+    (window as any).__skipOpening = true;
+    router.push(newPath);
   };
 
   return (
@@ -23,4 +29,3 @@ export default function LanguageSwitcher() {
     </motion.button>
   );
 }
-

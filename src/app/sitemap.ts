@@ -2,45 +2,29 @@ import { MetadataRoute } from 'next';
 import { getData } from '@/lib/data';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
+const langs = ['en', 'ja'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 静的ページ
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1.0,
-    },
-    {
-      url: `${siteUrl}/activities`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/works`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-  ];
+  const staticPaths = ['', '/works', '/blog', '/activities'];
 
-  // 動的ページ（Works詳細ページ）
-  const data = getData('en'); // デフォルト言語で取得
-  const workPages: MetadataRoute.Sitemap = data.works.map((work) => ({
-    url: `${siteUrl}/works/${work.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
+  const staticPages: MetadataRoute.Sitemap = langs.flatMap((lang) =>
+    staticPaths.map((path) => ({
+      url: `${siteUrl}/${lang}${path}`,
+      lastModified: new Date(),
+      changeFrequency: path === '' ? 'weekly' as const : path === '/blog' ? 'weekly' as const : 'monthly' as const,
+      priority: path === '' ? 1.0 : path === '/blog' || path === '/works' ? 0.9 : 0.8,
+    }))
+  );
+
+  const data = getData('en');
+  const workPages: MetadataRoute.Sitemap = langs.flatMap((lang) =>
+    data.works.map((work) => ({
+      url: `${siteUrl}/${lang}/works/${work.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  );
 
   return [...staticPages, ...workPages];
 }
-

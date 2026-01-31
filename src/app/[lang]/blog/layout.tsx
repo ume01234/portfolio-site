@@ -3,16 +3,28 @@ import { getData } from '@/lib/data';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const data = getData('ja'); // デフォルトは日本語
+type Lang = 'en' | 'ja';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const lang = params.lang as Lang;
+  const data = getData(lang);
+  const isJa = lang === 'ja';
+
+  const description = isJa
+    ? `${data.sections.blog}一覧ページ。技術記事やブログ投稿を紹介しています。`
+    : `${data.sections.blog} page. Technical articles and blog posts.`;
 
   return {
     title: `${data.sections.blog} - portfolio-Hashizume`,
-    description: `${data.sections.blog}一覧ページ。技術記事やブログ投稿を紹介しています。`,
+    description,
     openGraph: {
       title: `${data.sections.blog} - portfolio-Hashizume`,
-      description: `${data.sections.blog}一覧ページ。技術記事やブログ投稿を紹介しています。`,
-      url: `${siteUrl}/blog`,
+      description,
+      url: `${siteUrl}/${lang}/blog`,
       type: 'website',
       images: [
         {
@@ -26,11 +38,15 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `${data.sections.blog} - portfolio-Hashizume`,
-      description: `${data.sections.blog}一覧ページ。技術記事やブログ投稿を紹介しています。`,
+      description,
       images: ['/images/ogp-image.png'],
     },
     alternates: {
-      canonical: `${siteUrl}/blog`,
+      canonical: `${siteUrl}/${lang}/blog`,
+      languages: {
+        en: `${siteUrl}/en/blog`,
+        ja: `${siteUrl}/ja/blog`,
+      },
     },
   };
 }
@@ -42,4 +58,3 @@ export default function BlogLayout({
 }) {
   return <>{children}</>;
 }
-

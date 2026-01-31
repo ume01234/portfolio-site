@@ -19,9 +19,9 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
 
   useEffect(() => {
     if (!work) {
-      router.push('/works');
+      router.push(`/${language}/works`);
     }
-  }, [workId, work, router]);
+  }, [workId, work, router, language]);
 
   if (!work) {
     return null;
@@ -31,7 +31,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
 
   return (
     <main className="min-h-screen bg-coffee-cream">
-      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <motion.button
@@ -46,7 +45,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
         </div>
       </header>
 
-      {/* Content */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -54,7 +52,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Title */}
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-coffee-espresso">
               {work.title.split('|').map((part, index, array) => (
                 <span key={index}>
@@ -63,8 +60,7 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
                 </span>
               ))}
             </h1>
-            
-            {/* Hero Image */}
+
             <div className="w-full h-64 md:h-96 rounded-lg mb-8 overflow-hidden border border-coffee-brown/20">
               <img
                 src={`/images/works/work-${work.id}.png`}
@@ -73,12 +69,11 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
               />
             </div>
 
-            {/* Description */}
             <div className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-8 mb-8">
               <p className="text-coffee-dark/70 text-lg leading-relaxed mb-6">
                 {work.longDescription || work.description}
               </p>
-              
+
               {work.url && (
                 <a
                   href={work.url}
@@ -93,7 +88,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
               )}
             </div>
 
-            {/* Technologies */}
             {work.technologies && work.technologies.length > 0 && (
               <div className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-8 mb-8">
                 <div className="flex items-center gap-2 mb-4">
@@ -115,7 +109,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
               </div>
             )}
 
-            {/* Features */}
             {work.features && work.features.length > 0 && (
               <div className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-8 mb-8">
                 <div className="flex items-center gap-2 mb-4">
@@ -138,7 +131,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
               </div>
             )}
 
-            {/* Additional Screenshots Placeholder */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div className="w-full h-48 bg-coffee-latte/30 rounded-lg flex items-center justify-center border border-coffee-brown/20">
                 <span className="text-coffee-brown/40 text-sm font-serif">
@@ -157,4 +149,3 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
     </main>
   );
 }
-

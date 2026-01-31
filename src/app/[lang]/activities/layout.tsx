@@ -3,16 +3,28 @@ import { getData } from '@/lib/data';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const data = getData('ja'); // デフォルトは日本語
+type Lang = 'en' | 'ja';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const lang = params.lang as Lang;
+  const data = getData(lang);
+  const isJa = lang === 'ja';
+
+  const description = isJa
+    ? `${data.sections.activities}ページ。現在の主な取り組みや活動を紹介しています。`
+    : `${data.sections.activities} page. Current activities and initiatives.`;
 
   return {
     title: `${data.sections.activities} - portfolio-Hashizume`,
-    description: `${data.sections.activities}ページ。現在の主な取り組みや活動を紹介しています。`,
+    description,
     openGraph: {
       title: `${data.sections.activities} - portfolio-Hashizume`,
-      description: `${data.sections.activities}ページ。現在の主な取り組みや活動を紹介しています。`,
-      url: `${siteUrl}/activities`,
+      description,
+      url: `${siteUrl}/${lang}/activities`,
       type: 'website',
       images: [
         {
@@ -26,11 +38,15 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `${data.sections.activities} - portfolio-Hashizume`,
-      description: `${data.sections.activities}ページ。現在の主な取り組みや活動を紹介しています。`,
+      description,
       images: ['/images/ogp-image.png'],
     },
     alternates: {
-      canonical: `${siteUrl}/activities`,
+      canonical: `${siteUrl}/${lang}/activities`,
+      languages: {
+        en: `${siteUrl}/en/activities`,
+        ja: `${siteUrl}/ja/activities`,
+      },
     },
   };
 }
@@ -42,4 +58,3 @@ export default function ActivitiesLayout({
 }) {
   return <>{children}</>;
 }
-

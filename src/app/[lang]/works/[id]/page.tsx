@@ -7,21 +7,25 @@ const siteUrl = 'https://z-ume01234.pages.dev';
 
 interface WorkDetailPageProps {
   params: {
+    lang: string;
     id: string;
   };
 }
 
-// 静的エクスポート用: すべてのworksのidを生成
 export function generateStaticParams() {
-  const data = getData('en'); // 英語版のデータからidを取得（どの言語でもidは同じ）
-  return data.works.map((work) => ({
-    id: work.id,
-  }));
+  const data = getData('en');
+  const langs = ['en', 'ja'];
+  return langs.flatMap((lang) =>
+    data.works.map((work) => ({
+      lang,
+      id: work.id,
+    }))
+  );
 }
 
-// メタデータ生成
 export async function generateMetadata({ params }: WorkDetailPageProps): Promise<Metadata> {
-  const data = getData('en');
+  const lang = params.lang as 'en' | 'ja';
+  const data = getData(lang);
   const work = data.works.find((w) => w.id === params.id);
 
   if (!work) {
@@ -36,7 +40,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
     openGraph: {
       title: work.title,
       description: work.description,
-      url: `${siteUrl}/works/${work.id}`,
+      url: `${siteUrl}/${lang}/works/${work.id}`,
       type: 'website',
       images: [
         {
@@ -54,13 +58,17 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
       images: ['/images/ogp-image.png'],
     },
     alternates: {
-      canonical: `${siteUrl}/works/${work.id}`,
+      canonical: `${siteUrl}/${lang}/works/${work.id}`,
+      languages: {
+        en: `${siteUrl}/en/works/${work.id}`,
+        ja: `${siteUrl}/ja/works/${work.id}`,
+      },
     },
   };
 }
 
 export default function WorkDetailPage({ params }: WorkDetailPageProps) {
-  const data = getData('en'); // サーバー側ではデフォルト言語を使用（静的生成用）
+  const data = getData('en');
   const work = data.works.find((w) => w.id === params.id);
 
   if (!work) {
