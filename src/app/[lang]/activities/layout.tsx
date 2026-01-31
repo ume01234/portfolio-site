@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { getData } from '@/lib/data';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
@@ -53,8 +54,42 @@ export async function generateMetadata({
 
 export default function ActivitiesLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { lang: string };
 }) {
-  return <>{children}</>;
+  const lang = params.lang as Lang;
+  const data = getData(lang);
+
+  // パンくずリスト構造化データ（JSON-LD）- 画面には非表示、Google検索向け
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: lang === 'ja' ? 'ホーム' : 'Home',
+        item: `${siteUrl}/${lang}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: data.sections.activities,
+        item: `${siteUrl}/${lang}/activities`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Script
+        id="breadcrumb-activities"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      {children}
+    </>
+  );
 }

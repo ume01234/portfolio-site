@@ -1,6 +1,7 @@
 import { getData } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import Script from 'next/script';
 import WorkDetailClient from './WorkDetailClient';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
@@ -68,12 +69,48 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
 }
 
 export default function WorkDetailPage({ params }: WorkDetailPageProps) {
-  const data = getData('en');
+  const lang = params.lang as 'en' | 'ja';
+  const data = getData(lang);
   const work = data.works.find((w) => w.id === params.id);
 
   if (!work) {
     notFound();
   }
 
-  return <WorkDetailClient workId={params.id} />;
+  // パンくずリスト構造化データ（JSON-LD）- 画面には非表示、Google検索向け
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: lang === 'ja' ? 'ホーム' : 'Home',
+        item: `${siteUrl}/${lang}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: data.sections.works,
+        item: `${siteUrl}/${lang}/works`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: work.title,
+        item: `${siteUrl}/${lang}/works/${work.id}`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Script
+        id="breadcrumb-work-detail"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <WorkDetailClient workId={params.id} />
+    </>
+  );
 }
