@@ -170,7 +170,7 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
           {/* テキスト */}
           <div className="absolute bottom-10 flex flex-col items-center gap-2">
             <motion.div
-              className="text-[#3e2723] font-serif tracking-widest text-sm"
+              className="text-[#3e2723] font-serif tracking-widest text-base"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
@@ -178,7 +178,7 @@ export default function OpeningAnimation({ onComplete }: OpeningAnimationProps) 
               BREWING...
             </motion.div>
             <motion.div
-              className="text-[#3e2723]/30 text-xs tracking-wide"
+              className="text-[#3e2723]/30 text-sm tracking-wide"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}

@@ -179,7 +179,7 @@ export default function Home() {
       {/* Right side - Scrollable content */}
       <div
         ref={scrollContainerRef}
-        className="flex-1 bg-coffee-cream overflow-y-auto relative scroll-smooth"
+        className="flex-1 bg-coffee-cream overflow-y-auto relative scroll-smooth md:pr-3"
       >
         {/* Mobile header */}
         <section className="md:hidden min-h-screen flex flex-col items-center justify-center px-6 bg-coffee-cream relative overflow-hidden">
