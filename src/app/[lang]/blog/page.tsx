@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { getData } from '@/lib/data';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -38,39 +38,70 @@ export default function BlogPage() {
             {data.sections.blog}
           </motion.h1>
 
-          <div className="space-y-2">
-            {data.blogPosts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all"
-              >
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group"
-                  aria-label={language === 'ja' ? `記事を読む: ${post.title}${post.platform ? ` (${post.platform})` : ''}` : `Read article: ${post.title} on ${post.platform || 'blog'}`}
+          {data.blogPosts.length > 0 ? (
+            <div className="space-y-3">
+              {data.blogPosts.map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg overflow-hidden hover:bg-white hover:shadow-md transition-all"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <h2 className="text-lg font-semibold text-coffee-espresso group-hover:text-coffee-brown transition-colors flex-1">
-                      {post.title}
-                    </h2>
-                    {post.platform && (
-                      <span className="px-2 py-0.5 bg-coffee-brown/20 text-coffee-espresso text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0">
-                        {post.platform}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-coffee-dark/70 mb-2 leading-relaxed">{post.subtitle}</p>
-                  <p className="text-coffee-brown/60 text-xs">{post.date}</p>
-                </a>
-              </motion.article>
-            ))}
-          </div>
+                  <a
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex group"
+                    aria-label={language === 'ja' ? `記事を読む: ${post.title}${post.platform ? ` (${post.platform})` : ''}` : `Read article: ${post.title} on ${post.platform || 'blog'}`}
+                  >
+                    {/* Left: Thumbnail / Emoji */}
+                    <div className="hidden sm:flex w-32 md:w-40 flex-shrink-0 items-center justify-center bg-coffee-latte/15">
+                      {post.platform === 'Medium' && post.thumbnail ? (
+                        <img
+                          src={post.thumbnail}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      ) : post.platform === 'Zenn' && post.emoji ? (
+                        <span className="text-4xl">{post.emoji}</span>
+                      ) : (
+                        <span className="text-coffee-brown/30 font-serif text-sm">{post.platform || 'Article'}</span>
+                      )}
+                    </div>
+
+                    {/* Right: Text content */}
+                    <div className="flex-1 p-4 min-w-0">
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <h2 className="text-lg font-semibold text-coffee-espresso group-hover:text-coffee-brown transition-colors flex-1 line-clamp-2">
+                          {post.title}
+                        </h2>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          {post.platform && (
+                            <span className="px-2 py-0.5 bg-coffee-brown/20 text-coffee-espresso text-xs font-medium rounded-full whitespace-nowrap">
+                              {post.platform}
+                            </span>
+                          )}
+                          <ExternalLink className="w-4 h-4 text-coffee-brown/40 group-hover:text-coffee-brown transition-colors" />
+                        </div>
+                      </div>
+                      {post.subtitle && (
+                        <p className="text-sm text-coffee-dark/70 mb-2 leading-relaxed line-clamp-2">{post.subtitle}</p>
+                      )}
+                      <p className="text-coffee-brown/60 text-xs">{post.date}</p>
+                    </div>
+                  </a>
+                </motion.article>
+              ))}
+            </div>
+          ) : (
+            <div className="py-16 text-center">
+              <p className="text-2xl md:text-3xl font-bold text-coffee-espresso/60">
+                {data.sections.comingSoon}
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </main>

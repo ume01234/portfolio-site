@@ -380,11 +380,21 @@ export default function Home() {
             <h2 className="text-xl md:text-2xl font-bold text-coffee-espresso">
               {data.sections.blog}
             </h2>
+            {data.blogPosts.length > 0 && (
+              <Link
+                href={`/${language}/blog`}
+                aria-label={language === 'ja' ? 'すべてのブログ記事を表示' : 'View all blog posts'}
+              >
+                <span className="text-coffee-brown hover:text-coffee-espresso transition-colors font-medium border-b border-coffee-brown/30 hover:border-coffee-brown text-sm md:text-base">
+                  {data.sections.viewAll} →
+                </span>
+              </Link>
+            )}
           </div>
-          {false ? (
+          {data.blogPosts.length > 0 ? (
             <div className="overflow-x-auto no-scrollbar pb-8">
               <div className="flex gap-6 min-w-max px-4">
-                {(data.blogPosts as Array<{ id: string; title: string; subtitle: string; url: string; date: string; platform?: string }>).slice(0, 5).map((post, index) => (
+                {data.blogPosts.map((post, index) => (
                   <motion.div
                     key={post.id}
                     initial={{ opacity: 0, x: 20 }}
@@ -400,21 +410,48 @@ export default function Home() {
                       aria-label={language === 'ja' ? `記事を読む: ${post.title}` : `Read article: ${post.title}`}
                     >
                       <div
-                        className="aspect-video bg-coffee-latte/10 rounded-md mb-4 flex items-center justify-center relative overflow-hidden"
+                        className="aspect-video rounded-md mb-4 overflow-hidden relative flex items-center justify-center bg-coffee-latte/20"
                         aria-hidden="true"
                       >
-                         <div className="absolute inset-0 bg-coffee-brown/0 group-hover:bg-coffee-brown/5 transition-colors" />
-                         <span className="text-coffee-brown/40 font-serif">Article</span>
+                        {post.platform === 'Medium' && post.thumbnail ? (
+                          <>
+                            <img
+                              src={post.thumbnail}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-coffee-espresso/0 group-hover:bg-coffee-espresso/10 transition-colors duration-300" />
+                          </>
+                        ) : post.platform === 'Zenn' && post.emoji ? (
+                          <>
+                            <span className="text-5xl">{post.emoji}</span>
+                            <div className="absolute inset-0 bg-coffee-brown/0 group-hover:bg-coffee-brown/5 transition-colors duration-300" />
+                          </>
+                        ) : (
+                          <>
+                            <span className="text-coffee-brown/40 font-serif text-lg">{post.platform || 'Article'}</span>
+                            <div className="absolute inset-0 bg-coffee-brown/0 group-hover:bg-coffee-brown/5 transition-colors duration-300" />
+                          </>
+                        )}
                       </div>
-                      <h3 className="text-lg font-bold text-coffee-espresso mb-2 group-hover:text-coffee-brown transition-colors">
+                      <div className="flex items-center gap-2 mb-2">
+                        {post.platform && (
+                          <span className="px-2 py-0.5 bg-coffee-brown/15 text-coffee-espresso text-xs font-medium rounded-full">
+                            {post.platform}
+                          </span>
+                        )}
+                        <span className="text-xs text-coffee-brown/60 font-mono">
+                          {post.date}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-coffee-espresso mb-2 group-hover:text-coffee-brown transition-colors line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-sm text-coffee-dark/70 mb-2 line-clamp-2">
-                        {post.subtitle}
-                      </p>
-                      <p className="text-xs text-coffee-brown/60 font-mono">
-                        {post.date}
-                      </p>
+                      {post.subtitle && (
+                        <p className="text-sm text-coffee-dark/70 line-clamp-2">
+                          {post.subtitle}
+                        </p>
+                      )}
                     </a>
                   </motion.div>
                 ))}

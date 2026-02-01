@@ -26,9 +26,13 @@ export interface BlogPost {
   title: string;
   subtitle: string;
   url: string;
-  date: string;
-  platform?: string; // 投稿サイト名（Medium, Note, Zennなど）
+  date: string;        // YYYY-MM-DD
+  platform?: string;   // 'Medium' | 'Zenn' | 'Note'
+  thumbnail?: string;  // Medium記事のサムネイルURL
+  emoji?: string;      // Zenn記事の絵文字
 }
+
+import blogPostsData from './blogPosts.json';
 
 export interface SocialLink {
   name: string;
@@ -158,48 +162,7 @@ Key achievements included performing EDA, building models, and proposing measure
 The project was executed on Google Colab.`,
       },
     ],
-    blogPosts: [
-      {
-        id: '1',
-        title: 'Practical Usage of Next.js App Router',
-        subtitle: 'Best practices for modern web application development using App Router.',
-        url: 'https://example.com/blog/1',
-        date: '2024-03-15',
-        platform: 'Medium',
-      },
-      {
-        id: '2',
-        title: 'Achieving Type-Safe Development with TypeScript',
-        subtitle: 'Explaining the importance of type definitions and practical type design techniques.',
-        url: 'https://example.com/blog/2',
-        date: '2024-03-10',
-        platform: 'Zenn',
-      },
-      {
-        id: '3',
-        title: 'Beautiful Animations with Framer Motion',
-        subtitle: 'Introducing implementation methods for scroll-linked animations and page transitions.',
-        url: 'https://example.com/blog/3',
-        date: '2024-03-05',
-        platform: 'Note',
-      },
-      {
-        id: '4',
-        title: 'Efficient Styling with Tailwind CSS',
-        subtitle: 'How to write maintainable CSS with a utility-first approach.',
-        url: 'https://example.com/blog/4',
-        date: '2024-02-28',
-        platform: 'Medium',
-      },
-      {
-        id: '5',
-        title: 'The Importance of Web Accessibility',
-        subtitle: 'Basic concepts and implementation methods for creating websites that are easy for all users to use.',
-        url: 'https://example.com/blog/5',
-        date: '2024-02-20',
-        platform: 'Zenn',
-      },
-    ],
+    blogPosts: blogPostsData as BlogPost[],
     hobbies: [
       {
         id: '1',
@@ -369,48 +332,7 @@ The project was executed on Google Colab.`,
 Google Colabでの実行を行いました。`,
       },
     ],
-    blogPosts: [
-      {
-        id: '1',
-        title: 'Next.js App Routerの実践的な使い方',
-        subtitle: 'App Routerを使ったモダンなWebアプリケーション開発のベストプラクティスをまとめました。',
-        url: 'https://example.com/blog/1',
-        date: '2024-03-15',
-        platform: 'Medium',
-      },
-      {
-        id: '2',
-        title: 'TypeScriptで型安全な開発を実現する',
-        subtitle: '型定義の重要性と、実践的な型設計のテクニックについて解説します。',
-        url: 'https://example.com/blog/2',
-        date: '2024-03-10',
-        platform: 'Zenn',
-      },
-      {
-        id: '3',
-        title: 'Framer Motionで実現する美しいアニメーション',
-        subtitle: 'スクロール連動アニメーションやページ遷移の実装方法を紹介します。',
-        url: 'https://example.com/blog/3',
-        date: '2024-03-05',
-        platform: 'Note',
-      },
-      {
-        id: '4',
-        title: 'Tailwind CSSで効率的なスタイリング',
-        subtitle: 'ユーティリティファーストのアプローチで、保守性の高いCSSを書く方法。',
-        url: 'https://example.com/blog/4',
-        date: '2024-02-28',
-        platform: 'Medium',
-      },
-      {
-        id: '5',
-        title: 'Webアクセシビリティの重要性',
-        subtitle: 'すべてのユーザーが使いやすいWebサイトを作るための基本的な考え方と実装方法。',
-        url: 'https://example.com/blog/5',
-        date: '2024-02-20',
-        platform: 'Zenn',
-      },
-    ],
+    blogPosts: blogPostsData as BlogPost[],
     hobbies: [
       {
         id: '1',
