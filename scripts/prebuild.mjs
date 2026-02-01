@@ -34,7 +34,16 @@ async function fetchMedium() {
 
     // Extract subtitle from first <p> tag
     const firstP = contentEncoded.match(/<p>([\s\S]*?)<\/p>/)?.[1] || '';
-    const subtitle = firstP.replace(/<[^>]+>/g, '').trim().slice(0, 120);
+    const subtitle = firstP
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .trim()
+      .slice(0, 120);
 
     const date = pubDate ? new Date(pubDate).toISOString().split('T')[0] : '';
 
@@ -82,7 +91,7 @@ async function fetchNote() {
   const notes = json.data?.contents || [];
   const items = notes.map((note) => ({
     title: note.name || '',
-    subtitle: (note.body || '').replace(/<[^>]+>/g, '').trim().slice(0, 120),
+    subtitle: (note.body || '').replace(/<[^>]+>/g, '').replace(/\n+/g, ' ').trim().slice(0, 120),
     url: note.noteUrl || '',
     date: note.publishAt ? new Date(note.publishAt).toISOString().split('T')[0] : '',
     platform: 'Note',

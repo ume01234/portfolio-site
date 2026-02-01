@@ -89,7 +89,7 @@ export default function BlogPage() {
                       {post.subtitle && (
                         <p className="text-sm text-coffee-dark/70 mb-2 leading-relaxed line-clamp-2">{post.subtitle}</p>
                       )}
-                      <p className="text-coffee-brown/60 text-xs">{post.date}</p>
+                      <time dateTime={post.date} className="text-coffee-brown/60 text-xs">{post.date}</time>
                     </div>
                   </a>
                 </motion.article>

@@ -1,9 +1,11 @@
 // Blog一覧ページのレイアウト
 // - generateMetadata: SEOメタデータ（title, OGP, hreflang, og:locale等）
 // - パンくずリスト構造化データ（ホーム > Blog）
+// - ItemList構造化データ（ブログ記事一覧）
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { getData } from '@/lib/data';
+import blogPostsData from '@/lib/blogPosts.json';
 
 const siteUrl = 'https://z-ume01234.pages.dev';
 
@@ -86,6 +88,24 @@ export default function BlogLayout({
     ],
   };
 
+  // ブログ記事一覧の構造化データ（ItemList）- Google検索向け
+  const itemList = blogPostsData.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: blogPostsData.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Article',
+        name: post.title,
+        url: post.url,
+        datePublished: post.date,
+        ...(post.subtitle ? { description: post.subtitle } : {}),
+        ...(post.platform ? { publisher: { '@type': 'Organization', name: post.platform } } : {}),
+      },
+    })),
+  } : null;
+
   return (
     <>
       <Script
@@ -93,6 +113,13 @@ export default function BlogLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
+      {itemList && (
+        <Script
+          id="itemlist-blog"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+        />
+      )}
       {children}
     </>
   );

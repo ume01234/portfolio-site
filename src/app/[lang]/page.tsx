@@ -440,9 +440,9 @@ export default function Home() {
                             {post.platform}
                           </span>
                         )}
-                        <span className="text-xs text-coffee-brown/60 font-mono">
+                        <time dateTime={post.date} className="text-xs text-coffee-brown/60 font-mono">
                           {post.date}
-                        </span>
+                        </time>
                       </div>
                       <h3 className="text-lg font-bold text-coffee-espresso mb-2 group-hover:text-coffee-brown transition-colors line-clamp-2">
                         {post.title}

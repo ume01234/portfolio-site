@@ -1,3 +1,5 @@
+import blogPostsData from './blogPosts.json';
+
 export interface ActivityEvent {
   id: string;
   title: string;
@@ -31,8 +33,6 @@ export interface BlogPost {
   thumbnail?: string;  // Medium記事のサムネイルURL
   emoji?: string;      // Zenn記事の絵文字
 }
-
-import blogPostsData from './blogPosts.json';
 
 export interface SocialLink {
   name: string;
