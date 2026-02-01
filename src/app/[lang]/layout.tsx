@@ -4,12 +4,8 @@
 // - structuredData: Google検索向けの人物情報（JSON-LD）
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { socialLinks, emailAddress } from '@/lib/data';
+import { socialLinks, emailAddress, siteUrl, type Language } from '@/lib/data';
 import LayoutClient from './layout-client';
-
-const siteUrl = 'https://z-ume01234.pages.dev';
-
-type Lang = 'en' | 'ja';
 
 // ビルド時に /en と /ja の2パターンの静的HTMLを生成する
 export function generateStaticParams() {
@@ -22,7 +18,7 @@ export async function generateMetadata({
 }: {
   params: { lang: string };
 }): Promise<Metadata> {
-  const lang = params.lang as Lang;
+  const lang = params.lang as Language;
   const isJa = lang === 'ja';
 
   const title = 'portfolio-Hashizume | Rikuto Hashizume - Data Science & Web Engineering';
@@ -93,7 +89,7 @@ export default function LangLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  const lang = params.lang as Lang;
+  const lang = params.lang as Language;
 
   // Google検索向けの人物構造化データ（JSON-LD）- 画面には非表示
   const structuredData = {

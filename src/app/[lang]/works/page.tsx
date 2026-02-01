@@ -51,7 +51,7 @@ export default function WorksPage() {
                 <Link
                   href={`/${language}/works/${work.id}`}
                   className="block group"
-                  aria-label={language === 'ja' ? `${work.title}を表示` : `View work: ${work.title}`}
+                  aria-label={language === 'ja' ? `${work.title}を表示` : `View project: ${work.title}`}
                 >
                   <h2 className="text-lg font-semibold text-coffee-espresso group-hover:text-coffee-brown transition-colors mb-2">
                     {work.title.split('|').map((part, index, array) => (

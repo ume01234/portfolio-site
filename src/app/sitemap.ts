@@ -1,9 +1,7 @@
 // サイトマップ生成（sitemap.xml）
 // 全ページを /en と /ja の両方で出力し、検索エンジンにクロール対象を伝える
 import { MetadataRoute } from 'next';
-import { getData } from '@/lib/data';
-
-const siteUrl = 'https://z-ume01234.pages.dev';
+import { getData, siteUrl } from '@/lib/data';
 const langs = ['en', 'ja'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

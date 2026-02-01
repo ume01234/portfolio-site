@@ -12,6 +12,20 @@ function toDateString(str) {
   return d.toISOString().split('T')[0];
 }
 
+function decodeHtmlEntities(str) {
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+}
+
+function stripHtml(str) {
+  return str.replace(/<[^>]+>/g, '');
+}
+
 // --- Medium RSS ---
 async function fetchMedium() {
   const url = 'https://medium.com/feed/@zume2.dev';
@@ -41,16 +55,7 @@ async function fetchMedium() {
 
     // Extract subtitle from first <p> tag
     const firstP = contentEncoded.match(/<p>([\s\S]*?)<\/p>/)?.[1] || '';
-    const subtitle = firstP
-      .replace(/<[^>]+>/g, '')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
-      .replace(/&nbsp;/g, ' ')
-      .trim()
-      .slice(0, 120);
+    const subtitle = decodeHtmlEntities(stripHtml(firstP)).trim().slice(0, 120);
 
     const date = toDateString(pubDate);
 
@@ -98,7 +103,7 @@ async function fetchNote() {
   const notes = json.data?.contents || [];
   const items = notes.map((note) => ({
     title: note.name || '',
-    subtitle: (note.body || '').replace(/<[^>]+>/g, '').replace(/\n+/g, ' ').trim().slice(0, 120),
+    subtitle: stripHtml(note.body || '').replace(/\n+/g, ' ').trim().slice(0, 120),
     url: note.noteUrl || '',
     date: toDateString(note.publishAt),
     platform: 'Note',

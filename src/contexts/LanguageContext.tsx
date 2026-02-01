@@ -4,8 +4,7 @@
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';
-
-type Language = 'en' | 'ja';
+import { type Language } from '@/lib/data';
 
 interface LanguageContextType {
   language: Language;

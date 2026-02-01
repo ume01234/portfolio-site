@@ -3,18 +3,14 @@
 // - パンくずリスト構造化データ（ホーム > Activities）
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { getData } from '@/lib/data';
-
-const siteUrl = 'https://z-ume01234.pages.dev';
-
-type Lang = 'en' | 'ja';
+import { getData, siteUrl, type Language } from '@/lib/data';
 
 export async function generateMetadata({
   params,
 }: {
   params: { lang: string };
 }): Promise<Metadata> {
-  const lang = params.lang as Lang;
+  const lang = params.lang as Language;
   const data = getData(lang);
   const isJa = lang === 'ja';
 
@@ -63,7 +59,7 @@ export default function ActivitiesLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  const lang = params.lang as Lang;
+  const lang = params.lang as Language;
   const data = getData(lang);
 
   // パンくずリスト構造化データ（JSON-LD）- 画面には非表示、Google検索向け

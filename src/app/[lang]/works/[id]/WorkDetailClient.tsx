@@ -80,7 +80,7 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-coffee-brown/20 hover:bg-coffee-brown/30 text-coffee-espresso rounded-full transition-colors font-medium"
-                  aria-label={isJapanese ? `${work.title}を開く` : `Visit ${work.title}`}
+                  aria-label={isJapanese ? `${work.title}を開く` : `Visit project: ${work.title}`}
                 >
                   <span>{isJapanese ? 'プロジェクトを見る' : 'View Project'}</span>
                   <ExternalLink className="w-4 h-4" />

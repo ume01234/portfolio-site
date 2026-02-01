@@ -2,13 +2,11 @@
 // - generateStaticParams: 全言語×全作品の組み合わせで静的HTML生成
 // - generateMetadata: 作品ごとのSEOメタデータ（title, OGP, hreflang等）
 // - パンくずリスト構造化データ（ホーム > Works > 作品名）
-import { getData } from '@/lib/data';
+import { getData, siteUrl, type Language } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import WorkDetailClient from './WorkDetailClient';
-
-const siteUrl = 'https://z-ume01234.pages.dev';
 
 interface WorkDetailPageProps {
   params: {
@@ -31,13 +29,13 @@ export function generateStaticParams() {
 
 // 作品ごとのSEOメタデータ（title, OGP, canonical, hreflang, og:locale等）
 export async function generateMetadata({ params }: WorkDetailPageProps): Promise<Metadata> {
-  const lang = params.lang as 'en' | 'ja';
+  const lang = params.lang as Language;
   const data = getData(lang);
   const work = data.works.find((w) => w.id === params.id);
 
   if (!work) {
     return {
-      title: 'Work Not Found',
+      title: 'Project Not Found',
     };
   }
 
@@ -76,7 +74,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
 }
 
 export default function WorkDetailPage({ params }: WorkDetailPageProps) {
-  const lang = params.lang as 'en' | 'ja';
+  const lang = params.lang as Language;
   const data = getData(lang);
   const work = data.works.find((w) => w.id === params.id);
 

@@ -374,7 +374,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 8: Blog (Netflix-style) */}
+        {/* Section 6: Blog (Netflix-style) */}
         <section className="min-h-[40vh] px-6 py-8 md:py-12 flex flex-col justify-center">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl md:text-2xl font-bold text-coffee-espresso">
@@ -466,7 +466,7 @@ export default function Home() {
           )}
         </section>
 
-        {/* Section 9: Hobbies */}
+        {/* Section 7: Hobbies */}
         <section className="min-h-[40vh] px-6 py-8 md:py-8 flex flex-col justify-center mb-20">
           <h2 className="text-xl md:text-2xl font-bold mb-8 text-coffee-espresso">
             {data.sections.hobbies}

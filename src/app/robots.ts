@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-
-const siteUrl = 'https://z-ume01234.pages.dev';
+import { siteUrl } from '@/lib/data';
 
 export default function robots(): MetadataRoute.Robots {
   return {

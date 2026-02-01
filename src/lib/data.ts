@@ -1,5 +1,9 @@
 import blogPostsData from './blogPosts.json';
 
+export const siteUrl = 'https://z-ume01234.pages.dev';
+
+export type Language = 'en' | 'ja';
+
 export interface ActivityEvent {
   id: string;
   title: string;
@@ -46,8 +50,6 @@ export interface Hobby {
   description: string;
   image: string;
 }
-
-type Language = 'en' | 'ja';
 
 const data = {
   en: {
@@ -431,8 +433,5 @@ export function getData(language: Language = 'en') {
   return data[language];
 }
 
-// 後方互換性のため、デフォルトエクスポートも提供
-export const profileData = data.en.profileData;
-export const achievements = data.en.achievements;
-export const works = data.en.works;
-export const blogPosts = data.en.blogPosts;
+// ブログ記事データ（言語共通、prebuildスクリプトで生成）
+export { blogPostsData };
