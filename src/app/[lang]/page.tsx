@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Github, Linkedin, BookOpen, FileText, PenTool, Newspaper, Mail } from 'lucide-react';
+import { Github, Linkedin, BookOpen, FileText, /* PenTool, */ Newspaper, Mail } from 'lucide-react';
 import {
   getData,
   socialLinks,
@@ -21,7 +21,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   linkedin: Linkedin,
   'book-open': BookOpen,
   'file-text': FileText,
-  'pen-tool': PenTool,
+  // 'pen-tool': PenTool, // Note連携一時無効化
   newspaper: Newspaper,
 };
 

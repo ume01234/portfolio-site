@@ -93,25 +93,25 @@ async function fetchZenn() {
   return items;
 }
 
-// --- Note API ---
-async function fetchNote() {
-  const url = 'https://note.com/api/v2/creators/triple_field/contents?kind=note';
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Note fetch failed: ${res.status}`);
-  const json = await res.json();
-
-  const notes = json.data?.contents || [];
-  const items = notes.map((note) => ({
-    title: note.name || '',
-    subtitle: stripHtml(note.body || '').replace(/\n+/g, ' ').trim().slice(0, 120),
-    url: note.noteUrl || '',
-    date: toDateString(note.publishAt),
-    platform: 'Note',
-  }));
-
-  console.log(`[prebuild] Note: ${items.length} articles fetched`);
-  return items;
-}
+// --- Note API --- (一時的に無効化)
+// async function fetchNote() {
+//   const url = 'https://note.com/api/v2/creators/triple_field/contents?kind=note';
+//   const res = await fetch(url);
+//   if (!res.ok) throw new Error(`Note fetch failed: ${res.status}`);
+//   const json = await res.json();
+//
+//   const notes = json.data?.contents || [];
+//   const items = notes.map((note) => ({
+//     title: note.name || '',
+//     subtitle: stripHtml(note.body || '').replace(/\n+/g, ' ').trim().slice(0, 120),
+//     url: note.noteUrl || '',
+//     date: toDateString(note.publishAt),
+//     platform: 'Note',
+//   }));
+//
+//   console.log(`[prebuild] Note: ${items.length} articles fetched`);
+//   return items;
+// }
 
 // --- Main ---
 async function main() {
@@ -120,7 +120,7 @@ async function main() {
   const results = await Promise.allSettled([
     fetchMedium(),
     fetchZenn(),
-    fetchNote(),
+    // fetchNote(), // 一時的に無効化
   ]);
 
   const allPosts = [];

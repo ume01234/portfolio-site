@@ -164,7 +164,7 @@ Key achievements included performing EDA, building models, and proposing measure
 The project was executed on Google Colab.`,
       },
     ],
-    blogPosts: blogPostsData as BlogPost[],
+    blogPosts: (blogPostsData as BlogPost[]).filter(p => p.platform !== 'Note'), // Note記事を一時的に非表示
     hobbies: [
       {
         id: '1',
@@ -334,7 +334,7 @@ The project was executed on Google Colab.`,
 Google Colabでの実行を行いました。`,
       },
     ],
-    blogPosts: blogPostsData as BlogPost[],
+    blogPosts: (blogPostsData as BlogPost[]).filter(p => p.platform !== 'Note'), // Note記事を一時的に非表示
     hobbies: [
       {
         id: '1',
@@ -416,11 +416,12 @@ export const socialLinks: SocialLink[] = [
     url: 'https://medium.com/@zume2.dev',
     icon: 'newspaper',
   },
-  {
-    name: 'Note',
-    url: 'https://note.com/triple_field/portal',
-    icon: 'pen-tool',
-  },
+  // Note連携を一時的に無効化
+  // {
+  //   name: 'Note',
+  //   url: 'https://note.com/triple_field/portal',
+  //   icon: 'pen-tool',
+  // },
   {
     name: 'Zenn',
     url: 'https://zenn.dev/sunlight_white',
