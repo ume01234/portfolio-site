@@ -13,6 +13,7 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext';
 import LiquidBackground from '@/components/LiquidBackground';
 import TypeBSection from '@/components/TypeBSection';
+import TimelineSection from '@/components/TimelineSection';
 import ScrollToTop from '@/components/ScrollToTop';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -42,8 +43,6 @@ export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const certChunks = chunkArray(data.achievements.certifications, 5);
-  const internshipChunks = chunkArray(data.achievements.internships, 5);
-  const eventChunks = chunkArray(data.achievements.events, 5);
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -302,58 +301,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: Current Activities (Netflix-style horizontal scroll) */}
-        <section className="min-h-[40vh] px-6 py-8 md:py-8 flex flex-col justify-center">
-          <h2 className="text-xl md:text-2xl font-bold mb-8 text-coffee-espresso">
-            {data.sections.activities}
-          </h2>
-          <div className="overflow-x-auto no-scrollbar pb-8">
-            <div className="flex gap-6 min-w-max px-4">
-              {data.activities.map((activity, index) => (
-                <motion.div
-                  key={activity.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="w-80 flex-shrink-0 group"
-                >
-                  <div
-                    className="aspect-video bg-coffee-latte/20 rounded-md mb-4 overflow-hidden relative"
-                    aria-hidden="true"
-                  >
-                     <div className="absolute inset-0 bg-coffee-espresso/0 group-hover:bg-coffee-espresso/10 transition-colors duration-300" />
-                     <div className="w-full h-full flex items-center justify-center text-coffee-brown/40">
-                        Image
-                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-coffee-espresso mb-2 group-hover:text-coffee-brown transition-colors">
-                    {activity.title.split('|').map((part, index, array) => (
-                      <span key={index}>
-                        {part}
-                        {index < array.length - 1 && <br />}
-                      </span>
-                    ))}
-                  </h3>
-                  <p className="text-sm text-coffee-dark/80 leading-relaxed">
-                    {activity.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4: Certifications (Type B: 5-row chunks) */}
+        {/* Section 3: Certifications (Type B: 5-row chunks) */}
         <TypeBSection title={data.sections.certifications} chunks={certChunks} />
 
-        {/* Section 5: Internships (Type B) */}
-        <TypeBSection title={data.sections.internships} chunks={internshipChunks} />
+        {/* Section 4: Internships & External Events (Timeline) */}
+        <TimelineSection
+          title={data.sections.activityEvents}
+          events={data.achievements.activityEvents}
+          maxDisplay={6}
+          viewAllLink={`/${language}/activities`}
+          viewAllText={data.sections.viewAll}
+          categoryLabels={data.categoryLabels}
+          language={language}
+        />
 
-        {/* Section 6: External Events (Type B) */}
-        <TypeBSection title={data.sections.events} chunks={eventChunks} />
-
-        {/* Section 7: Works (Netflix-style) */}
+        {/* Section 5: Works (Netflix-style) */}
         <section className="min-h-[40vh] px-6 py-8 md:py-8 flex flex-col justify-center">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl md:text-2xl font-bold text-coffee-espresso">

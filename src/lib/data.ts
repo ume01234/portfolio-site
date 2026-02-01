@@ -1,14 +1,14 @@
-export interface Activity {
+export interface ActivityEvent {
   id: string;
   title: string;
-  thumbnail: string;
   description: string;
+  date: string;
+  category: 'intern' | 'lecture' | 'hackathon';
 }
 
 export interface Achievement {
   certifications: string[];
-  internships: string[];
-  events: string[];
+  activityEvents: ActivityEvent[];
 }
 
 export interface Work {
@@ -60,38 +60,6 @@ I aspire to be an evangelist who translates the language of technology and provi
         'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation',
       ],
     },
-    activities: [
-      {
-        id: '1',
-        title: 'Data Analysis Competition Participation',
-        thumbnail: '/images/placeholder-1.jpg',
-        description: 'Working on data analysis competitions utilizing the latest research models.',
-      },
-      {
-        id: '2',
-        title: 'Game AI Development & Experimentation',
-        thumbnail: '/images/placeholder-2.jpg',
-        description: 'Learning algorithms and history of strategy games along with reinforcement learning, and implementing game AI.',
-      },
-      {
-        id: '3',
-        title: 'Generative Art-Driven|Work Creation',
-        thumbnail: '/images/placeholder-3.jpg',
-        description: 'Creating works for exhibition with themes of religion, AI, and 2025.',
-      },
-      {
-        id: '4',
-        title: 'Event Platform|New Business Launch',
-        thumbnail: '/images/placeholder-4.jpg',
-        description: 'Developing an event platform and preparing for entrepreneurship together with like-minded friends.',
-      },
-      {
-        id: '5',
-        title: 'Blog Writing',
-        thumbnail: '/images/placeholder-4.jpg',
-        description: 'Outputting learned content and personal action philosophy, sharing knowledge with people on the same path.',
-      },
-    ],
     achievements: {
       certifications: [
         'EIKEN Grade Pre-1',
@@ -99,17 +67,17 @@ I aspire to be an evangelist who translates the language of technology and provi
         'Fundamental Information Technology Engineer',
         'Applied Information Technology Engineer',
       ],
-      internships: [
-        'SAP Japan (IT Consultant) March 2024',
-        'Works Applications (DX Planning) August 2025',
-        'Mybest (Data Scientist) September 2025',
-        'Logglass (Engineer) September 2025',
-      ],
-      events: [
-        'The University of Tokyo Matsuo & Iwasawa Lab GCI Winter Completion',
-        'Deep Learning Fundamentals Course (hosted by the above) Completion',
-        'E-Certification Preparation Course (hosted by the above) In Progress',
-        'Track Job Hackathon May 2025 Participation',
+      activityEvents: [
+        { id: '1', title: 'E-Certification Preparation Course (In Progress)', description: 'Taking the E-Certification preparation course hosted by the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025', category: 'lecture' as const },
+        { id: '2', title: 'Deep Learning Fundamentals Course 2025 Autumn (Completed)', description: 'Completed the deep learning fundamentals course hosted by the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025 Autumn', category: 'lecture' as const },
+        { id: '3', title: 'Logglass Engineer Intern', description: 'Participated as an engineer intern at Logglass.', date: 'Sep 2025', category: 'intern' as const },
+        { id: '4', title: 'Mybest Data Scientist Intern', description: 'Participated as a data scientist intern at Mybest.', date: 'Sep 2025', category: 'intern' as const },
+        { id: '5', title: 'Works Applications DX Planning Intern', description: 'Participated in a DX planning intern at Works Applications.', date: 'Aug 2025', category: 'intern' as const },
+        { id: '6', title: 'GCI 2025 Summer (Completed)', description: 'Completed the GCI 2025 Summer program at the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025 Summer', category: 'lecture' as const },
+        { id: '7', title: 'Security Mini Camp Yamanashi (Completed)', description: 'Completed the Security Mini Camp held in Yamanashi.', date: '2025', category: 'lecture' as const },
+        { id: '8', title: 'Security Mini Camp Online (Participated)', description: 'Participated in the online Security Mini Camp.', date: '2025', category: 'lecture' as const },
+        { id: '9', title: 'Track Job Hackathon (Participated)', description: 'Participated in the Track Job Hackathon.', date: 'May 2025', category: 'hackathon' as const },
+        { id: '10', title: 'SAP Japan IT Consultant Intern', description: 'Participated as an IT consultant intern at SAP Japan.', date: 'Mar 2024', category: 'intern' as const },
       ],
     },
     works: [
@@ -273,10 +241,8 @@ The project was executed on Google Colab.`,
     sections: {
       aboutMe: 'About Me',
       education: 'Affiliation & Education',
-      activities: 'Current Main Activities',
       certifications: 'Certifications',
-      internships: 'Internships',
-      events: 'External Events',
+      activityEvents: 'Internships & Events',
       works: 'Projects',
       blog: 'Blog',
       hobbies: 'Hobbies & Interests',
@@ -284,6 +250,11 @@ The project was executed on Google Colab.`,
       comingSoon: 'Coming Soon!',
       sourceCode: 'Source code is available on',
       back: 'Back',
+    },
+    categoryLabels: {
+      intern: 'Internship',
+      lecture: 'Lecture',
+      hackathon: 'Hackathon',
     },
   },
   ja: {
@@ -300,38 +271,6 @@ The project was executed on Google Colab.`,
         'Digital Nature Group(落合陽一研究室)　所属',
       ],
     },
-    activities: [
-      {
-        id: '1',
-        title: 'データ分析コンペティション参加',
-        thumbnail: '/images/placeholder-1.jpg',
-        description: '最新の論文のモデルを活用してデータ分析コンペティションに取り組んでいます。',
-      },
-      {
-        id: '2',
-        title: 'ゲームAI開発・実験',
-        thumbnail: '/images/placeholder-2.jpg',
-        description: '戦略ゲームについてのアルゴリズムや歴史と強化学習を学び、ゲームAIを実装しています。',
-      },
-      {
-        id: '3',
-        title: 'ジェネラティブアートを駆使した|作品製作',
-        thumbnail: '/images/placeholder-3.jpg',
-        description: '宗教,AI,2025年をテーマに、展示会に出展する作品の製作に取り組んでいます。',
-      },
-      {
-        id: '4',
-        title: 'イベントプラットフォーム|新規事業立ち上げ',
-        thumbnail: '/images/placeholder-4.jpg',
-        description: '同じ志を持った友人と共に、イベントプラットフォームの開発および起業準備を行っています。',
-      },
-      {
-        id: '5',
-        title: 'ブログ執筆',
-        thumbnail: '/images/placeholder-4.jpg',
-        description: '学習した内容,自分の中の行動哲学をアウトプットし、同じ道を歩む人々と知識を共有しています。',
-      },
-    ],
     achievements: {
       certifications: [
         '実用英語検定準一級',
@@ -339,19 +278,17 @@ The project was executed on Google Colab.`,
         '基本情報技術者',
         '応用情報技術者',
       ],
-      internships: [
-        'SAP Japan（ITコンサルタント）2024年3月',
-        'Works Applications（DX企画）2025年8月',
-        'Mybest（データサイエンティスト）2025年9月',
-        'Logglass（エンジニア）2025年9月',
-      ],
-      events: [
-        '東京大学松尾・岩澤研究室 GCI2025 Summer 修了',
-        '同上主催 深層学習基礎講座2025 Autumn 修了',
-        '同上主催 E資格対策講座 受講中',
-        'Track Job Hackathon 2025年5月参加',
-        'セキュリティミニキャンプ 山梨 修了',
-        'セキュリティミニキャンプ オンライン 参加'
+      activityEvents: [
+        { id: '1', title: 'E資格対策講座 受講中', description: '東京大学松尾・岩澤研究室主催のE資格対策講座を受講しています。', date: '2025年', category: 'lecture' as const },
+        { id: '2', title: '深層学習基礎講座 2025 Autumn 修了', description: '東京大学松尾・岩澤研究室主催の深層学習基礎講座を修了しました。', date: '2025年 Autumn', category: 'lecture' as const },
+        { id: '3', title: 'Logglass エンジニアインターン', description: 'Logglassにてソフトウェアエンジニアとしてインターンに参加しました。', date: '2025年9月', category: 'intern' as const },
+        { id: '4', title: 'Mybest データサイエンティストインターン', description: 'Mybestにてデータサイエンティストとしてインターンに参加しました。', date: '2025年9月', category: 'intern' as const },
+        { id: '5', title: 'Works Applications DX企画インターン', description: 'Works ApplicationsにてDX企画のインターンに参加しました。', date: '2025年8月', category: 'intern' as const },
+        { id: '6', title: 'GCI 2025 Summer 修了', description: '東京大学松尾・岩澤研究室主催のGCI 2025 Summerプログラムを修了しました。', date: '2025年 Summer', category: 'lecture' as const },
+        { id: '7', title: 'セキュリティミニキャンプ 山梨 修了', description: '山梨で開催されたセキュリティミニキャンプを修了しました。', date: '2025年', category: 'lecture' as const },
+        { id: '8', title: 'セキュリティミニキャンプ オンライン 参加', description: 'オンラインで開催されたセキュリティミニキャンプに参加しました。', date: '2025年', category: 'lecture' as const },
+        { id: '9', title: 'Track Job Hackathon 参加', description: 'Track Job Hackathonに参加しました。', date: '2025年5月', category: 'hackathon' as const },
+        { id: '10', title: 'SAP Japan ITコンサルタントインターン', description: 'SAP JapanにてITコンサルタントとしてインターンに参加しました。', date: '2024年3月', category: 'intern' as const },
       ],
     },
     works: [
@@ -515,10 +452,8 @@ Google Colabでの実行を行いました。`,
     sections: {
       aboutMe: '私について',
       education: '所属・学歴',
-      activities: '現在の主な取り組み',
       certifications: '資格',
-      internships: 'インターン',
-      events: '外部イベント',
+      activityEvents: 'インターン・外部イベント',
       works: 'プロジェクト',
       blog: 'ブログ',
       hobbies: '趣味・好きなこと',
@@ -526,6 +461,11 @@ Google Colabでの実行を行いました。`,
       comingSoon: 'Coming Soon!',
       sourceCode: 'ソースコードは',
       back: '戻る',
+    },
+    categoryLabels: {
+      intern: 'インターン',
+      lecture: '外部講義',
+      hackathon: 'ハッカソン',
     },
   },
 };
@@ -571,7 +511,6 @@ export function getData(language: Language = 'en') {
 
 // 後方互換性のため、デフォルトエクスポートも提供
 export const profileData = data.en.profileData;
-export const activities = data.en.activities;
 export const achievements = data.en.achievements;
 export const works = data.en.works;
 export const blogPosts = data.en.blogPosts;
