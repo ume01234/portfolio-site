@@ -1,19 +1,25 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// 活動実績一覧ページ（Server Component）
+// - インターン・講座・ハッカソン等のイベントデータを静的HTMLとして出力
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { getData } from '@/lib/data';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { getData, type Language } from '@/lib/data';
+import AnimatedBackButton from '@/components/AnimatedBackButton';
+import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedListItem from '@/components/AnimatedListItem';
 
+// カテゴリごとのバッジスタイル
 const categoryStyles: Record<string, string> = {
   intern: 'bg-coffee-brown/10 text-coffee-brown',
   lecture: 'bg-coffee-latte/50 text-coffee-dark',
   hackathon: 'bg-coffee-espresso/10 text-coffee-espresso',
 };
 
-export default function ActivitiesPage() {
-  const { language } = useLanguage();
+export default function ActivitiesPage({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const language = params.lang as Language;
   const data = getData(language);
 
   return (
@@ -21,37 +27,25 @@ export default function ActivitiesPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link href={`/${language}`}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
-            >
+            <AnimatedBackButton>
               <ArrowLeft className="w-5 h-5" />
               {data.sections.back}
-            </motion.button>
+            </AnimatedBackButton>
           </Link>
         </div>
       </header>
 
       <section className="pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso"
-          >
+          <AnimatedHeading className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso">
             {data.sections.activityEvents}
-          </motion.h1>
+          </AnimatedHeading>
 
           <div className="space-y-2">
             {data.achievements.activityEvents.map((event, index) => (
-              <motion.article
+              <AnimatedListItem
                 key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
+                index={index}
                 className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all"
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -64,7 +58,7 @@ export default function ActivitiesPage() {
                 </div>
                 <h2 className="text-lg font-semibold text-coffee-espresso mb-2">{event.title}</h2>
                 <p className="text-sm text-coffee-dark/70 leading-relaxed">{event.description}</p>
-              </motion.article>
+              </AnimatedListItem>
             ))}
           </div>
         </div>

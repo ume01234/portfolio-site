@@ -1,13 +1,19 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// ブログ一覧ページ（Server Component）
+// - 記事データはビルド時にJSONから読み込み、静的HTMLとして出力される
+// - アニメーションのみClient Componentに委譲
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { getData } from '@/lib/data';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { getData, type Language } from '@/lib/data';
+import AnimatedBackButton from '@/components/AnimatedBackButton';
+import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedListItem from '@/components/AnimatedListItem';
 
-export default function BlogPage() {
-  const { language } = useLanguage();
+export default function BlogPage({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const language = params.lang as Language;
   const data = getData(language);
 
   return (
@@ -15,38 +21,27 @@ export default function BlogPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link href={`/${language}`}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
-            >
+            <AnimatedBackButton>
               <ArrowLeft className="w-5 h-5" />
               {data.sections.back}
-            </motion.button>
+            </AnimatedBackButton>
           </Link>
         </div>
       </header>
 
       <section className="pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso"
-          >
+          <AnimatedHeading className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso">
             {data.sections.blog}
-          </motion.h1>
+          </AnimatedHeading>
 
+          {/* 記事一覧：サムネイル/絵文字 + タイトル・サブタイトル・日付 */}
           {data.blogPosts.length > 0 ? (
             <div className="space-y-3">
               {data.blogPosts.map((post, index) => (
-                <motion.article
+                <AnimatedListItem
                   key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  index={index}
                   className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg overflow-hidden hover:bg-white hover:shadow-md transition-all"
                 >
                   <a
@@ -92,7 +87,7 @@ export default function BlogPage() {
                       <time dateTime={post.date} className="text-coffee-brown/60 text-xs">{post.date}</time>
                     </div>
                   </a>
-                </motion.article>
+                </AnimatedListItem>
               ))}
             </div>
           ) : (

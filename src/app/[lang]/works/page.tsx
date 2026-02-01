@@ -1,13 +1,19 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// 作品一覧ページ（Server Component）
+// - 作品データはビルド時に読み込み、静的HTMLとして出力される
+// - 各作品は /[lang]/works/[id] の詳細ページへリンク
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { getData } from '@/lib/data';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { getData, type Language } from '@/lib/data';
+import AnimatedBackButton from '@/components/AnimatedBackButton';
+import AnimatedHeading from '@/components/AnimatedHeading';
+import AnimatedListItem from '@/components/AnimatedListItem';
 
-export default function WorksPage() {
-  const { language } = useLanguage();
+export default function WorksPage({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const language = params.lang as Language;
   const data = getData(language);
 
   return (
@@ -15,37 +21,25 @@ export default function WorksPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link href={`/${language}`}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
-            >
+            <AnimatedBackButton>
               <ArrowLeft className="w-5 h-5" />
               {data.sections.back}
-            </motion.button>
+            </AnimatedBackButton>
           </Link>
         </div>
       </header>
 
       <section className="pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso"
-          >
+          <AnimatedHeading className="text-4xl md:text-5xl font-bold mb-8 text-coffee-espresso">
             {data.sections.works}
-          </motion.h1>
+          </AnimatedHeading>
 
           <div className="space-y-2">
             {data.works.map((work, index) => (
-              <motion.article
+              <AnimatedListItem
                 key={work.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
+                index={index}
                 className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all"
               >
                 <Link
@@ -63,7 +57,7 @@ export default function WorksPage() {
                   </h2>
                   <p className="text-sm text-coffee-dark/70 leading-relaxed">{work.description}</p>
                 </Link>
-              </motion.article>
+              </AnimatedListItem>
             ))}
           </div>
         </div>

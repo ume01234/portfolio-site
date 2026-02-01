@@ -2,6 +2,7 @@
 // - オープニングアニメーションの表示制御
 // - 言語切替時はオープニングをスキップ（__skipOpening フラグで判定）
 // - ページリロード時はオープニングを表示
+// - childrenは常にDOMに配置し、CSSで表示制御（SSR時もHTMLに出力される）
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -17,42 +18,42 @@ export default function LayoutClient({
   children: React.ReactNode;
   lang: 'en' | 'ja';
 }) {
+  // showOpening: オープニングアニメーションのオーバーレイ表示
+  // showContent: コンテンツの表示切替（CSSで制御、SSR時はfalseでopacity-0）
   const [showContent, setShowContent] = useState(false);
-  const [skipOpening, setSkipOpening] = useState(false);
-  const [ready, setReady] = useState(false); // サーバー/クライアントの描画ずれ防止用
+  const [showOpening, setShowOpening] = useState(false);
 
-  // HTMLの lang 属性を動的に更新
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  // 言語切替時は LanguageSwitcher が __skipOpening を設定するので、オープニングをスキップ
+  // 初回マウント時：言語切替なら即表示、それ以外はオープニング再生
   useEffect(() => {
     if ((window as any).__skipOpening) {
       setShowContent(true);
-      setSkipOpening(true);
+    } else {
+      setShowOpening(true);
     }
-    setReady(true);
   }, []);
 
   const handleOpeningComplete = () => {
+    setShowOpening(false);
     setShowContent(true);
   };
 
-  if (!ready) return null;
-
   return (
     <LanguageProvider lang={lang}>
-      {!skipOpening && !showContent && (
+      {/* オープニングアニメーション（fixed z-50のオーバーレイ、完了後に除去） */}
+      {showOpening && (
         <OpeningAnimation onComplete={handleOpeningComplete} />
       )}
-      {showContent && (
-        <>
-          <SteamCursor />
-          <LanguageSwitcher />
-          {children}
-        </>
-      )}
+
+      {/* メインコンテンツ：常にDOMに存在し、CSSで表示制御（SSR時もHTMLに出力される） */}
+      <div className={`transition-opacity duration-300 ${showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <SteamCursor />
+        <LanguageSwitcher />
+        {children}
+      </div>
     </LanguageProvider>
   );
 }
