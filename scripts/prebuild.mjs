@@ -5,6 +5,13 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = join(__dirname, '..', 'src', 'lib', 'blogPosts.json');
 
+function toDateString(str) {
+  if (!str) return '';
+  const d = new Date(str);
+  if (isNaN(d.getTime())) return '';
+  return d.toISOString().split('T')[0];
+}
+
 // --- Medium RSS ---
 async function fetchMedium() {
   const url = 'https://medium.com/feed/@zume2.dev';
@@ -45,7 +52,7 @@ async function fetchMedium() {
       .trim()
       .slice(0, 120);
 
-    const date = pubDate ? new Date(pubDate).toISOString().split('T')[0] : '';
+    const date = toDateString(pubDate);
 
     items.push({
       title,
@@ -72,7 +79,7 @@ async function fetchZenn() {
     title: article.title || '',
     subtitle: '',
     url: `https://zenn.dev${article.path}`,
-    date: article.published_at ? new Date(article.published_at).toISOString().split('T')[0] : '',
+    date: toDateString(article.published_at),
     platform: 'Zenn',
     emoji: article.emoji || undefined,
   }));
@@ -93,7 +100,7 @@ async function fetchNote() {
     title: note.name || '',
     subtitle: (note.body || '').replace(/<[^>]+>/g, '').replace(/\n+/g, ' ').trim().slice(0, 120),
     url: note.noteUrl || '',
-    date: note.publishAt ? new Date(note.publishAt).toISOString().split('T')[0] : '',
+    date: toDateString(note.publishAt),
     platform: 'Note',
   }));
 
