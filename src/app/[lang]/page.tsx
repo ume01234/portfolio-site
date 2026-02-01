@@ -292,7 +292,11 @@ export default function Home() {
                 <ul className="space-y-2 border-l-2 border-coffee-brown/20 pl-6">
                   {data.profileData.education.map((item, index) => (
                     <li key={index} className="text-coffee-dark font-medium whitespace-nowrap">
-                      {item}
+                      {typeof item === 'string' ? item : (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-coffee-brown transition-colors">
+                          {item.text}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

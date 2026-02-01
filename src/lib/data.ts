@@ -63,7 +63,7 @@ I aspire to be an evangelist who translates the language of technology and provi
       education: [
         'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment',
         'University of Tsukuba, School of Informatics, Media Sciences - Transfer',
-        'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation',
+        { text: 'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
       ],
     },
     achievements: {
@@ -233,7 +233,7 @@ The project was executed on Google Colab.`,
       education: [
         '筑波大学 総合学域群 理系3　入学',
         '筑波大学 情報学群メディア創成学類　移行',
-        'Digital Nature Group(落合陽一研究室)　所属',
+        { text: 'Digital Nature Group(落合陽一研究室)　所属', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
       ],
     },
     achievements: {
