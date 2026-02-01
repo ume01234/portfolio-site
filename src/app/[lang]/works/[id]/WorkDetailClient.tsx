@@ -34,7 +34,7 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
       <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <motion.button
-            onClick={() => router.back()}
+            onClick={() => router.push(`/${language}/works`)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
@@ -70,7 +70,7 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
             </div>
 
             <div className="bg-white/80 backdrop-blur-sm border border-coffee-brown/30 rounded-lg p-8 mb-8">
-              <p className="text-coffee-dark/70 text-lg leading-relaxed mb-6">
+              <p className="text-coffee-dark/70 text-lg leading-relaxed mb-6 whitespace-pre-line">
                 {work.longDescription || work.description}
               </p>
 

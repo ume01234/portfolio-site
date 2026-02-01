@@ -63,9 +63,11 @@ const data = {
       name: 'Rikuto Hashizume',
       catchCopy: 'The Brewing Engineer',
       vision: 'Creating new worlds through technology',
-      aboutMe: `A generalist fascinated by a wide range of fields — data science, web engineering, acoustics, cognitive science, HCI, philosophy, and physics.
+      aboutMe: `Data science, web engineering, acoustics, cognitive science,
+HCI, philosophy, physics — a generalist fascinated by a wide range of fields.
 
-In an era where technology and society are changing at a dizzying pace, we need **bridges** that connect complex technology with essential value.
+In an era where technology and society are changing at a dizzying pace,
+we need **bridges** that connect complex technology with essential value.
 My goal is to become someone who can **translate technology into meaningful experiences**.
 
 I actively share my work in English and aim to expand my reach globally.
@@ -112,15 +114,23 @@ Drawing on a lifelong engagement with music and my perspective as someone with h
           'Scroll-linked liquid background animation and interactive steam cursor effect',
           'Responsive split-screen layout (fixed sidebar on desktop, vertical scroll on mobile)',
         ],
-        longDescription: `This portfolio site is a fully static Next.js application deployed on Cloudflare Pages via GitHub Actions. It uses the App Router with static export (output: 'export'), meaning the entire site is pre-rendered as HTML at build time with zero server runtime.
+        longDescription: `A fully static Next.js application deployed on Cloudflare Pages via GitHub Actions.
+It uses the App Router with static export (output: 'export'), pre-rendering the entire site as HTML at build time with zero server runtime.
 
-The architecture separates Server Components and Client Components by role: list pages such as blog, works, and activities are Server Components that generate SEO-optimized static HTML through generateStaticParams, while animation-heavy UI — the liquid background, steam cursor, and opening animation — is handled by Client Components with Framer Motion.
+The architecture separates Server Components and Client Components by role.
+List pages (blog, works, activities) are Server Components that generate SEO-optimized static HTML through generateStaticParams.
+Animation-heavy UI — the liquid background, steam cursor, and opening animation — is handled by Client Components with Framer Motion.
 
-Multilingual support is implemented via URL prefixes (/en, /ja) rather than a library. Each page generates both language variants at build time, and a postbuild script corrects the html lang attribute for Japanese pages since the root layout applies a single lang value. SEO metadata including hreflang alternates, OGP tags, and JSON-LD structured data (Person, BreadcrumbList) is generated per page.
+Multilingual support is implemented via URL prefixes (/en, /ja) rather than a library.
+Each page generates both language variants at build time, and a postbuild script corrects the html lang attribute for Japanese pages.
+SEO metadata including hreflang alternates, OGP tags, and JSON-LD structured data (Person, BreadcrumbList) is generated per page.
 
-During the prebuild step, a Node.js script fetches the latest articles from Medium (RSS) and Zenn (API), normalizing them into a shared blogPosts.json that is imported as static data. This allows blog content to stay current without any runtime API calls.
+During the prebuild step, a Node.js script fetches the latest articles from Medium (RSS) and Zenn (API).
+These are normalized into a shared blogPosts.json and imported as static data, keeping blog content current without any runtime API calls.
 
-The visual design is built on a custom coffee-themed Tailwind configuration with six brand colors (cream, latte, beige, brown, dark, espresso) and gradient utilities. The opening animation, liquid wave background synchronized to scroll progress, and mouse-tracking steam cursor effect create a cohesive, immersive experience.`,
+The visual design is built on a custom coffee-themed Tailwind configuration.
+Six brand colors (cream, latte, beige, brown, dark, espresso) and gradient utilities form the foundation.
+The opening animation, scroll-linked liquid wave background, and mouse-tracking steam cursor create a cohesive, immersive experience.`,
       },
       {
         id: '2',
@@ -243,9 +253,11 @@ The project was executed on Google Colab.`,
       name: '橋爪 陸人',
       catchCopy: '技術と感性を、一杯の価値へ',
       vision: '技術を通じて新しい世界を創造する',
-      aboutMe: `データサイエンス、Webエンジニアリング、音響学、認知科学、HCI、哲学、物理学——幅広い領域に魅了されているジェネラリスト。
+      aboutMe: `データサイエンス、Webエンジニアリング、音響学、認知科学、HCI、哲学、物理学  
+      ——幅広い領域に魅了されているジェネラリスト。
 
-技術も社会も目まぐるしく変化する時代だからこそ、複雑な技術と本質的な価値をつなぐ**架け橋**が必要である。
+技術も社会も目まぐるしく変化する時代だからこそ、  
+複雑な技術と本質的な価値をつなぐ**架け橋**が必要である。
 私が目指すのは、技術を**意味のある体験に翻訳**できる人。
 
 英語で積極的に発信しており、世界に活動の場を広げていきたいと考えている。
@@ -292,15 +304,25 @@ The project was executed on Google Colab.`,
           'スクロール連動の液体背景アニメーションとインタラクティブな湯気カーソルエフェクト',
           'レスポンシブ分割画面レイアウト（デスクトップ: 固定サイドバー / モバイル: 縦スクロール）',
         ],
-        longDescription: `このポートフォリオサイトは、Next.js App Routerを用いた完全静的アプリケーションです。output: 'export' による静的エクスポートでビルド時に全ページをHTMLとして生成し、サーバーランタイムを一切持たずにCloudflare Pages上で配信しています。デプロイはGitHub Actionsによる自動化を行っています。
+        longDescription: `Next.js App Routerを用いた完全静的アプリケーションです。
+output: 'export' による静的エクスポートで、ビルド時に全ページをHTMLとして生成。
+サーバーランタイムを一切持たず、Cloudflare Pages上で配信しています。
+デプロイはGitHub Actionsで自動化しています。
 
-アーキテクチャ面では、Server ComponentsとClient Componentsを役割ごとに分離しています。ブログ・プロジェクト・活動実績などの一覧ページはServer Componentとして実装し、generateStaticParamsでSEOに最適化された静的HTMLを生成。一方、液体背景アニメーション・湯気カーソル・オープニングアニメーションなどのインタラクティブなUIは、Framer Motionを使用したClient Componentで実装しています。
+Server ComponentsとClient Componentsを役割ごとに分離しています。
+一覧ページ（ブログ・プロジェクト・活動実績）はServer Componentで実装し、generateStaticParamsによりSEOに最適化された静的HTMLを生成。
+液体背景・湯気カーソル・オープニングアニメーションなどのインタラクティブなUIは、Framer Motionを用いたClient Componentで実装しています。
 
-多言語対応はライブラリを使用せず、URLプレフィックス(/en, /ja)方式で実装しました。各ページはビルド時に両言語分を生成し、postbuildスクリプトで日本語ページのhtml lang属性を補正しています（ルートレイアウトが単一のlang値を適用するため）。SEOメタデータとしてhreflang・OGPタグ・JSON-LD構造化データ（Person, BreadcrumbList）をページごとに生成しています。
+多言語対応はライブラリを使用せず、URLプレフィックス(/en, /ja)方式で実装。
+各ページはビルド時に両言語分を生成し、postbuildスクリプトで日本語ページのhtml lang属性を補正しています。
+SEOメタデータとして、hreflang・OGPタグ・JSON-LD構造化データ（Person, BreadcrumbList）をページごとに生成。
 
-prebuildステップでは、Node.jsスクリプトがMedium（RSS）とZenn（API）から最新記事を取得し、共通のblogPosts.jsonに正規化して静的データとしてインポートします。これにより、ランタイムAPIコールなしにブログコンテンツを最新に保っています。
+prebuildステップでは、Node.jsスクリプトがMedium（RSS）とZenn（API）から最新記事を取得。
+共通のblogPosts.jsonに正規化し、静的データとしてインポートすることで、ランタイムAPIコールなしにブログコンテンツを最新に保っています。
 
-ビジュアル面では、コーヒーをテーマにしたTailwindカスタム設定を基盤とし、6色のブランドカラー(cream, latte, beige, brown, dark, espresso)とグラデーションユーティリティを定義しています。オープニングアニメーション、スクロール進行に同期した液体波背景、マウス追従の湯気カーソルエフェクトにより、統一感のある没入体験を実現しています。`,
+ビジュアル面では、コーヒーをテーマにしたTailwindカスタム設定を基盤としています。
+6色のブランドカラー(cream, latte, beige, brown, dark, espresso)とグラデーションユーティリティを定義。
+オープニングアニメーション、スクロール連動の液体波背景、マウス追従の湯気カーソルにより、統一感のある没入体験を実現しています。`,
       },
       {
         id: '2',
