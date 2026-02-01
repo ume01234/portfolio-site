@@ -63,9 +63,13 @@ const data = {
       name: 'Rikuto Hashizume',
       catchCopy: 'The Brewing Engineer',
       vision: 'Creating new worlds through technology',
-      aboutMe: `I work as a generalist spanning data science, web engineering, and robotics.
-My goal is to become a bridge that **"extracts"** only the essential value from complex technology and delivers it to businesses and users.
-I aspire to be an evangelist who translates the language of technology and provides it as new experiences.`,
+      aboutMe: `A generalist fascinated by a wide range of fields — data science, web engineering, acoustics, cognitive science, HCI, philosophy, and physics.
+
+In an era where technology and society are changing at a dizzying pace, we need **bridges** that connect complex technology with essential value.
+My goal is to become someone who can **translate technology into meaningful experiences**.
+
+I actively share my work in English and aim to expand my reach globally.
+Drawing on a lifelong engagement with music and my perspective as someone with hearing differences, my current graduation research explores the **intersection of music and accessibility**.`,
       education: [
         { text: 'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment', date: 'Apr 2023' },
         { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
@@ -239,9 +243,13 @@ The project was executed on Google Colab.`,
       name: '橋爪 陸人',
       catchCopy: '技術と感性を、一杯の価値へ',
       vision: '技術を通じて新しい世界を創造する',
-      aboutMe: `データサイエンス、Webエンジニアリング、ロボティクスを横断するジェネラリストとして活動しています。
-私が目指すのは、複雑な技術の中から本質的な価値だけを**「抽出」**し、ビジネスやユーザーに届ける架け橋となること。 
-技術の言葉を翻訳し、新しい体験として提供するエバンジェリストでありたいと考えています。`,
+      aboutMe: `データサイエンス、Webエンジニアリング、音響学、認知科学、HCI、哲学、物理学——幅広い領域に魅了されているジェネラリスト。
+
+技術も社会も目まぐるしく変化する時代だからこそ、複雑な技術と本質的な価値をつなぐ**架け橋**が必要である。
+私が目指すのは、技術を**意味のある体験に翻訳**できる人。
+
+英語で積極的に発信しており、世界に活動の場を広げていきたいと考えている。
+幼少期からの音楽体験と、聴覚の当事者としての視点を持って、現在卒業研究では**音楽とアクセシビリティの交差点**を探っている。`,
       education: [
         { text: '筑波大学総合学域群 理系3　入学', date: '2023年4月' },
         { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
