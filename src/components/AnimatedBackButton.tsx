@@ -6,14 +6,16 @@ import { motion } from 'framer-motion';
 
 export default function AnimatedBackButton({
   children,
+  className = 'flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors',
 }: {
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <motion.span
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="flex items-center gap-2 text-coffee-espresso/70 hover:text-coffee-espresso transition-colors"
+      className={className}
     >
       {children}
     </motion.span>

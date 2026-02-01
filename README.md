@@ -8,12 +8,13 @@
 
 ### 主な特徴
 
-- ✔️ コーヒーをテーマにしたデザイン（液体の波打つアニメーション、スクロールに連動した「コーヒーを飲む」演出）
-- ✔️ 多言語対応（英語・日本語の切り替え）
-- ✔️ 豊富なアニメーション（Framer Motion）
-- ✔️ レスポンシブデザイン
-- ✔️ SEO最適化（構造化データ、サイトマップ、robots.txt）
-- ✔️ 静的サイト生成（Next.js）
+- コーヒーをテーマにしたデザイン（液体の波打つ背景、スクロール連動の「コーヒーを飲む」演出、カーソル追従の湯気エフェクト）
+- コーヒー注入モチーフのオープニングアニメーション（クリック/時間経過でスキップ可能）
+- 多言語対応（英語・日本語のURL切替方式、言語切替時はオープニングをスキップして即表示）
+- Server Component活用（一覧ページは静的HTMLに本文コンテンツを直接出力し、アニメーション部分のみClient Component）
+- ブログ記事の自動取得（Zenn / Medium / Note からビルド時に並列フェッチ）
+- SEO最適化（Person構造化データ、hreflang、OGP、サイトマップ、robots.txt）
+- Cloudflare Pages + GitHub Actionsによる自動デプロイ
 
 ## 技術スタック
 
@@ -28,29 +29,42 @@
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # ルートレイアウト（最小限、CSSのみ）
-│   ├── page.tsx            # ルート（/en/ へリダイレクト）
-│   ├── [lang]/             # 言語別ルート（/en/..., /ja/...）
-│   │   ├── layout.tsx      # 言語別メタデータ・構造化データ（SEO）
-│   │   ├── layout-client.tsx  # クライアント側レイアウト（オープニング制御）
-│   │   ├── page.tsx        # トップページ
-│   │   ├── works/          # プロジェクト一覧・詳細ページ
-│   │   ├── blog/           # ブログ一覧ページ
-│   │   └── activities/     # 取り組み一覧ページ
-│   ├── robots.ts           # robots.txt生成
-│   └── sitemap.ts          # サイトマップ生成（両言語対応）
-├── components/             # 再利用可能なコンポーネント
+├── app/                        # Next.js App Router
+│   ├── layout.tsx              # ルートレイアウト（最小限、CSSのみ）
+│   ├── page.tsx                # ルート（/en/ へリダイレクト）
+│   ├── [lang]/                 # 言語別ルート（/en/..., /ja/...）
+│   │   ├── layout.tsx          # 言語別メタデータ・構造化データ（SEO）
+│   │   ├── layout-client.tsx   # クライアント側レイアウト（オープニング・表示制御）
+│   │   ├── page.tsx            # トップページ
+│   │   ├── blog/page.tsx       # ブログ一覧（Server Component）
+│   │   ├── works/
+│   │   │   ├── page.tsx        # 作品一覧（Server Component）
+│   │   │   ├── layout.tsx      # 作品詳細レイアウト
+│   │   │   └── [id]/           # 作品詳細ページ
+│   │   └── activities/page.tsx # 活動実績一覧（Server Component）
+│   ├── robots.ts               # robots.txt生成
+│   └── sitemap.ts              # サイトマップ生成（両言語対応）
+├── components/                 # 再利用可能なコンポーネント
+│   ├── PageHeader.tsx          # 一覧ページ共通の固定ヘッダー（戻るボタン）
+│   ├── AnimatedBackButton.tsx  # 戻るボタンのホバー・タップアニメーション
+│   ├── AnimatedHeading.tsx     # ページ見出しのフェードインアニメーション
+│   ├── AnimatedListItem.tsx    # リストアイテムのスクロール連動アニメーション
+│   ├── OpeningAnimation.tsx    # エントリー時のコーヒー注入アニメーション
 │   ├── LiquidBackground.tsx    # コーヒー液体の波打つ背景アニメーション
-│   ├── OpeningAnimation.tsx    # エントリー時のアニメーション
 │   ├── LanguageSwitcher.tsx    # 言語切り替えボタン（URL切替方式）
-│   └── ...
-├── contexts/               # React Context
-│   └── LanguageContext.tsx  # 言語コンテキスト（URLから言語を共有）
-└── lib/                    # ユーティリティ・データ
-    └── data.ts             # プロフィール、Works、Blog等のデータ（多言語対応）
+│   ├── SteamCursor.tsx         # カーソル追従の湯気エフェクト
+│   ├── ScrollToTop.tsx         # トップへ戻るボタン
+│   ├── TimelineSection.tsx     # タイムライン表示セクション
+│   ├── TypeBSection.tsx        # TypeBレイアウトセクション
+│   └── StarBackground.tsx      # 星空背景アニメーション
+├── contexts/                   # React Context
+│   └── LanguageContext.tsx      # 言語コンテキスト（URLから言語を共有）
+└── lib/                        # ユーティリティ・データ
+    ├── data.ts                 # プロフィール、Works、Blog等のデータ（多言語対応）
+    └── blogPosts.json          # ブログ記事データ（prebuildで自動生成）
 scripts/
-└── postbuild.mjs           # ビルド後処理（日本語ページのhtml lang属性修正）
+├── prebuild.mjs                # ビルド前処理（Zenn/Medium/Note記事の自動取得）
+└── postbuild.mjs               # ビルド後処理（日本語ページのhtml lang属性修正）
 ```
 
 ## セットアップ
@@ -84,10 +98,11 @@ Cloudflare Pagesへの自動デプロイはGitHub Actionsで設定されてい�
    - `.github/workflows/deploy.yml`が実行される
 
 
-## 主な実装の特徴
+## 実装上の工夫
 
-- **スクロール連動アニメーション**: `requestAnimationFrame`を使用してスクロール進捗を計算
-- **多言語対応**: URLプレフィックス方式（`/en/...`, `/ja/...`）で言語を管理、全ページを両言語で静的生成
-- **静的サイト生成**: `output: 'export'`を使用、動的ルートは`generateStaticParams()`で事前生成
-- **SEO最適化**: hreflang、canonical、og:locale、パンくずリスト構造化データ、Person構造化データ、サイトマップ、robots.txtを実装
+- **Server / Client Componentの分離**: 一覧ページ（blog, works, activities）はServer Componentとして静的HTMLを生成し、Framer Motionによるアニメーションだけを小さなClient Componentに切り出すことで、SEOとインタラクティブ性を両立
+- **SSR時のコンテンツ出力**: layout-client.tsxでchildrenを常にDOMに配置し、CSSのopacity制御で表示を切り替えることで、SSR時もHTMLにコンテンツが含まれる設計（ハイドレーションミスマッチなし）
+- **スクロール連動アニメーション**: `requestAnimationFrame`でスクロール進捗を計算し、液体背景やセクション表示と連動
+- **多言語対応**: URLプレフィックス方式（`/en/...`, `/ja/...`）で言語管理。`generateStaticParams()`により全ページを両言語で静的生成
+- **ブログ記事の自動収集**: prebuildスクリプトでZenn・Medium・NoteのAPIから記事を並列取得し、JSONに書き出してビルド時にページに反映
 

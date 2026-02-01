@@ -5,23 +5,26 @@
 // - childrenは常にDOMに配置し、CSSで表示制御（SSR時もHTMLに出力される）
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import OpeningAnimation from '@/components/OpeningAnimation';
 import SteamCursor from '@/components/SteamCursor';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { type Language } from '@/lib/data';
 
 export default function LayoutClient({
   children,
   lang,
 }: {
   children: React.ReactNode;
-  lang: 'en' | 'ja';
+  lang: Language;
 }) {
   // showOpening: オープニングアニメーションのオーバーレイ表示
   // showContent: コンテンツの表示切替（CSSで制御、SSR時はfalseでopacity-0）
   const [showContent, setShowContent] = useState(false);
   const [showOpening, setShowOpening] = useState(false);
+  // 言語切替時はトランジションなしで即表示するためのフラグ
+  const isSkipRef = useRef(false);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -30,6 +33,7 @@ export default function LayoutClient({
   // 初回マウント時：言語切替なら即表示、それ以外はオープニング再生
   useEffect(() => {
     if ((window as any).__skipOpening) {
+      isSkipRef.current = true;
       setShowContent(true);
     } else {
       setShowOpening(true);
@@ -48,9 +52,11 @@ export default function LayoutClient({
         <OpeningAnimation onComplete={handleOpeningComplete} />
       )}
 
+      {/* カーソルエフェクト（コンテンツ表示後にマウント、不要なリスナー登録を防ぐ） */}
+      {showContent && <SteamCursor />}
+
       {/* メインコンテンツ：常にDOMに存在し、CSSで表示制御（SSR時もHTMLに出力される） */}
-      <div className={`transition-opacity duration-300 ${showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <SteamCursor />
+      <div className={`${isSkipRef.current ? '' : 'transition-opacity duration-300'} ${showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <LanguageSwitcher />
         {children}
       </div>

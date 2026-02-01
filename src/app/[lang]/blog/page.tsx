@@ -1,10 +1,9 @@
 // ブログ一覧ページ（Server Component）
 // - 記事データはビルド時にJSONから読み込み、静的HTMLとして出力される
 // - アニメーションのみClient Componentに委譲
-import Link from 'next/link';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { getData, type Language } from '@/lib/data';
-import AnimatedBackButton from '@/components/AnimatedBackButton';
+import PageHeader from '@/components/PageHeader';
 import AnimatedHeading from '@/components/AnimatedHeading';
 import AnimatedListItem from '@/components/AnimatedListItem';
 
@@ -18,16 +17,7 @@ export default function BlogPage({
 
   return (
     <main className="min-h-screen bg-coffee-cream">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-coffee-cream/80 backdrop-blur-sm border-b border-coffee-brown/10">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <Link href={`/${language}`}>
-            <AnimatedBackButton>
-              <ArrowLeft className="w-5 h-5" />
-              {data.sections.back}
-            </AnimatedBackButton>
-          </Link>
-        </div>
-      </header>
+      <PageHeader language={language} backText={data.sections.back} />
 
       <section className="pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
