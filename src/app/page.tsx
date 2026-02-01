@@ -1,4 +1,4 @@
-// ルートページ（ / へのアクセスを /en/ にリダイレクトする）
+// ルートページ（ / へのアクセスをブラウザ言語に応じて /en/ or /ja/ にリダイレクトする）
 // noscript タグは JavaScript が無効な環境向けのフォールバック
 'use client';
 
@@ -9,7 +9,9 @@ export default function RootPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/en/');
+    const browserLang = navigator.language || '';
+    const targetLang = browserLang.startsWith('ja') ? 'ja' : 'en';
+    router.replace(`/${targetLang}/`);
   }, [router]);
 
   return (
