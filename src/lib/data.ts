@@ -10,10 +10,16 @@ export interface ActivityEvent {
   description: string;
   date: string;
   category: 'intern' | 'lecture' | 'hackathon';
+  url?: string;
+}
+
+export interface Certification {
+  text: string;
+  date: string;
 }
 
 export interface Achievement {
-  certifications: string[];
+  certifications: Certification[];
   activityEvents: ActivityEvent[];
 }
 
@@ -61,50 +67,56 @@ const data = {
 My goal is to become a bridge that **"extracts"** only the essential value from complex technology and delivers it to businesses and users.
 I aspire to be an evangelist who translates the language of technology and provides it as new experiences.`,
       education: [
-        'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment',
-        'University of Tsukuba, School of Informatics, Media Sciences - Transfer',
-        { text: 'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
+        { text: 'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment', date: 'Apr 2023' },
+        { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
+        { text: 'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation', date: 'Jan 2025', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
       ],
     },
     achievements: {
       certifications: [
-        'EIKEN Grade Pre-1',
-        'Regular Driver\'s License',
-        'Fundamental Information Technology Engineer',
-        'Applied Information Technology Engineer',
+        { text: 'EIKEN Grade Pre-1', date: 'Nov 2022' },
+        { text: 'Fundamental Information Technology Engineer', date: 'Sep 2024' },
+        { text: "Regular Driver's License", date: 'Oct 2024' },
       ],
       activityEvents: [
-        { id: '1', title: 'E-Certification Preparation Course (In Progress)', description: 'Taking the E-Certification preparation course hosted by the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025', category: 'lecture' as const },
-        { id: '2', title: 'Deep Learning Fundamentals Course 2025 Autumn (Completed)', description: 'Completed the deep learning fundamentals course hosted by the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025 Autumn', category: 'lecture' as const },
-        { id: '3', title: 'Logglass Engineer Intern', description: 'Participated as an engineer intern at Logglass.', date: 'Sep 2025', category: 'intern' as const },
-        { id: '4', title: 'Mybest Data Scientist Intern', description: 'Participated as a data scientist intern at Mybest.', date: 'Sep 2025', category: 'intern' as const },
-        { id: '5', title: 'Works Applications DX Planning Intern', description: 'Participated in a DX planning intern at Works Applications.', date: 'Aug 2025', category: 'intern' as const },
-        { id: '6', title: 'GCI 2025 Summer (Completed)', description: 'Completed the GCI 2025 Summer program at the University of Tokyo Matsuo & Iwasawa Lab.', date: '2025 Summer', category: 'lecture' as const },
-        { id: '7', title: 'Security Mini Camp Yamanashi (Completed)', description: 'Completed the Security Mini Camp held in Yamanashi.', date: '2025', category: 'lecture' as const },
-        { id: '8', title: 'Security Mini Camp Online (Participated)', description: 'Participated in the online Security Mini Camp.', date: '2025', category: 'lecture' as const },
-        { id: '9', title: 'Track Job Hackathon (Participated)', description: 'Participated in the Track Job Hackathon.', date: 'May 2025', category: 'hackathon' as const },
-        { id: '10', title: 'SAP Japan IT Consultant Intern', description: 'Participated as an IT consultant intern at SAP Japan.', date: 'Mar 2024', category: 'intern' as const },
+        { id: '1', title: 'E-Certification Preparation Course (Completed)', description: 'Acquired advanced AI engineering knowledge connecting deep learning fundamentals to E-Certification qualification. Tech stack: Python(PyTorch) / Numpy / Applied Mathematics / Model Optimization / Backpropagation', date: 'Jan 2026', category: 'lecture' as const },
+        // { id: '2', title: 'Queue Inc. Engineer (Contract Development)', description: 'Database migration (Supabase) and feature improvements for a business support application that centrally manages advertising and listing information across multiple web services. Tech stack: Go / TypeScript / Supabase', date: 'Dec 2025 - Present', category: 'intern' as const },
+        { id: '3', title: 'Security Mini Camp 2025 Online (IPA) - Participated', description: 'Cross-disciplinary learning covering LLM application threat analysis, multi-agent systems, and RFC-based protocol implementation. Tech stack: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: 'Oct 2025', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
+        { id: '4', title: 'Logglass 1-Week Engineer Intern', description: 'Participated as a software engineer. Developed a management support system based on Domain-Driven Design (DDD). Learned agile development and clean architecture. Tech stack: Kotlin / TypeScript / SQL / DDD / Agile/Scrum / Clean Architecture', date: 'Sep 2025', category: 'intern' as const },
+        { id: '5', title: 'Works Applications 1-Week DX Planning Intern', description: 'Participated as a DX planner. Created business efficiency improvement proposals from a user perspective. Tech stack: DX Strategy / Business Process Analysis / User Research', date: 'Sep 2025', category: 'intern' as const },
+        { id: '6', title: 'Security Mini Camp 2025 Yamanashi (IPA) - Participated', description: 'Intensive hands-on training on robust class design using modern C++ standards, and analysis and defense techniques against phishing sites and DDoS attacks. Tech stack: C++ / PHP / Malware Analysis', date: 'Sep 2025', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/yamanashi2025.html' },
+        { id: '7', title: 'GCI Summer 2025 (UTokyo Matsuo & Iwasawa Lab) - Completed', description: 'Comprehensive program covering data analysis with Python to machine learning implementation and business applications. Honed data analysis skills through Kaggle-style competitions. Tech stack: Python(Pandas, Scikit-learn) / SQL / Data Science / Machine Learning', date: 'Sep 2025', category: 'lecture' as const },
+        { id: '8', title: 'Earth Re Pure Inc. Volunteer Development', description: 'Solo website development for a chemical company with patented technology. Handled domain transfer, server selection, SEO improvement, and form implementation on the technical side, and created articles through interviews with technical experts. Currently maintaining the site. Tech stack: PHP / JavaScript / CSS', date: 'Aug 2025 - Present', category: 'intern' as const },
+        { id: '9', title: 'Deep Learning Fundamentals Course (UTokyo Matsuo & Iwasawa Lab) - Completed', description: 'Systematically learned from neural network fundamentals to cutting-edge deep learning technologies including CNN, RNN, Transformer, and generative models. JDLA certified course. Tech stack: Python(PyTorch) / Deep Learning / Transformer / LLM', date: 'Jul 2025', category: 'lecture' as const },
+        { id: '10', title: 'TrackJob Hackathon - Participated', description: 'Completed product planning, technology selection, implementation, and presentation in 3 days. Developed an app to measure the impact of caffeine intake. Tech stack: JavaScript / CSS', date: 'May 2025', category: 'hackathon' as const },
       ],
     },
     works: [
       {
         id: '1',
         title: 'Portfolio Site Development',
-        description: 'This site itself is my first work. A portfolio site themed around coffee, built with Next.js and Framer Motion.',
+        description: 'This site itself is my first work. A fully static portfolio site themed around coffee, built with Next.js (App Router) and deployed on Cloudflare Pages.',
         url: 'https://z-ume01234.pages.dev',
-        technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Lucide React'],
+        technologies: ['Next.js 14 (App Router)', 'TypeScript', 'React 18', 'Tailwind CSS', 'Framer Motion', 'Lucide React', 'Cloudflare Pages', 'GitHub Actions'],
         features: [
-          'Responsive split-screen layout',
-          'Scroll-linked animations',
-          'Multilingual support (EN/JA)',
-          'Smooth page transitions',
-          'Coffee-themed design system',
+          'Fully static export (SSG) — no server required, deployed on Cloudflare Pages',
+          'Server Components for SEO-critical pages + Client Components for interactive elements',
+          'URL-based multilingual support (EN/JA) with hreflang, OGP, and JSON-LD structured data',
+          'Automatic blog aggregation from Medium & Zenn APIs during prebuild',
+          'Postbuild script to fix html lang attribute for Japanese pages',
+          'Coffee-themed design system with custom Tailwind color palette and gradients',
+          'Scroll-linked liquid background animation and interactive steam cursor effect',
+          'Responsive split-screen layout (fixed sidebar on desktop, vertical scroll on mobile)',
         ],
-        longDescription: `This portfolio site represents my journey as a developer, combining modern web technologies with thoughtful design. The site features a unique split-screen layout that adapts beautifully to different screen sizes, creating an immersive experience for visitors.
+        longDescription: `This portfolio site is a fully static Next.js application deployed on Cloudflare Pages via GitHub Actions. It uses the App Router with static export (output: 'export'), meaning the entire site is pre-rendered as HTML at build time with zero server runtime.
 
-The implementation leverages Next.js App Router for optimal performance and SEO, while Framer Motion provides smooth, scroll-linked animations that enhance the user experience. The coffee-themed design system creates a warm, inviting atmosphere that reflects my personality and approach to development.
+The architecture separates Server Components and Client Components by role: list pages such as blog, works, and activities are Server Components that generate SEO-optimized static HTML through generateStaticParams, while animation-heavy UI — the liquid background, steam cursor, and opening animation — is handled by Client Components with Framer Motion.
 
-Key highlights include a dynamic liquid background animation that responds to scroll progress, multilingual support for both English and Japanese audiences, and a comprehensive showcase of my projects, achievements, and blog posts. The site is fully responsive and optimized for performance, ensuring fast load times and smooth interactions across all devices.`,
+Multilingual support is implemented via URL prefixes (/en, /ja) rather than a library. Each page generates both language variants at build time, and a postbuild script corrects the html lang attribute for Japanese pages since the root layout applies a single lang value. SEO metadata including hreflang alternates, OGP tags, and JSON-LD structured data (Person, BreadcrumbList) is generated per page.
+
+During the prebuild step, a Node.js script fetches the latest articles from Medium (RSS) and Zenn (API), normalizing them into a shared blogPosts.json that is imported as static data. This allows blog content to stay current without any runtime API calls.
+
+The visual design is built on a custom coffee-themed Tailwind configuration with six brand colors (cream, latte, beige, brown, dark, espresso) and gradient utilities. The opening animation, liquid wave background synchronized to scroll progress, and mouse-tracking steam cursor effect create a cohesive, immersive experience.`,
       },
       {
         id: '2',
@@ -231,50 +243,56 @@ The project was executed on Google Colab.`,
 私が目指すのは、複雑な技術の中から本質的な価値だけを**「抽出」**し、ビジネスやユーザーに届ける架け橋となること。 
 技術の言葉を翻訳し、新しい体験として提供するエバンジェリストでありたいと考えています。`,
       education: [
-        '筑波大学 総合学域群 理系3　入学',
-        '筑波大学 情報学群メディア創成学類　移行',
-        { text: 'Digital Nature Group(落合陽一研究室)　所属', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
+        { text: '筑波大学総合学域群 理系3　入学', date: '2023年4月' },
+        { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
+        { text: 'Digital Nature Group(落合陽一研究室)　所属', date: '2025年1月', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
       ],
     },
     achievements: {
       certifications: [
-        '実用英語検定準一級',
-        '普通自動車免許',
-        '基本情報技術者',
-        '応用情報技術者',
+        { text: '実用英語検定準一級', date: '2022年11月' },
+        { text: '基本情報技術者', date: '2024年9月' },
+        { text: '普通自動車免許', date: '2024年10月' },
       ],
       activityEvents: [
-        { id: '1', title: 'E資格対策講座 受講中', description: '東京大学松尾・岩澤研究室主催のE資格対策講座を受講しています。', date: '2025年', category: 'lecture' as const },
-        { id: '2', title: '深層学習基礎講座 2025 Autumn 修了', description: '東京大学松尾・岩澤研究室主催の深層学習基礎講座を修了しました。', date: '2025年 Autumn', category: 'lecture' as const },
-        { id: '3', title: 'Logglass エンジニアインターン', description: 'Logglassにてソフトウェアエンジニアとしてインターンに参加しました。', date: '2025年9月', category: 'intern' as const },
-        { id: '4', title: 'Mybest データサイエンティストインターン', description: 'Mybestにてデータサイエンティストとしてインターンに参加しました。', date: '2025年9月', category: 'intern' as const },
-        { id: '5', title: 'Works Applications DX企画インターン', description: 'Works ApplicationsにてDX企画のインターンに参加しました。', date: '2025年8月', category: 'intern' as const },
-        { id: '6', title: 'GCI 2025 Summer 修了', description: '東京大学松尾・岩澤研究室主催のGCI 2025 Summerプログラムを修了しました。', date: '2025年 Summer', category: 'lecture' as const },
-        { id: '7', title: 'セキュリティミニキャンプ 山梨 修了', description: '山梨で開催されたセキュリティミニキャンプを修了しました。', date: '2025年', category: 'lecture' as const },
-        { id: '8', title: 'セキュリティミニキャンプ オンライン 参加', description: 'オンラインで開催されたセキュリティミニキャンプに参加しました。', date: '2025年', category: 'lecture' as const },
-        { id: '9', title: 'Track Job Hackathon 参加', description: 'Track Job Hackathonに参加しました。', date: '2025年5月', category: 'hackathon' as const },
-        { id: '10', title: 'SAP Japan ITコンサルタントインターン', description: 'SAP JapanにてITコンサルタントとしてインターンに参加しました。', date: '2024年3月', category: 'intern' as const },
+        { id: '1', title: 'E資格対策講座 修了', description: '深層学習基礎講座修了からE資格合格までを接続する高度なAIエンジニアリング知識を習得。技術スタック: Python(PyTorch) / Numpy / 応用数学 / モデル最適化 / 誤差逆伝播法', date: '2026年1月', category: 'lecture' as const },
+        // { id: '2', title: 'Queue株式会社 エンジニア(業務委託開発)', description: '複数Webサービスに対する広告・掲載情報を一元管理する業務支援アプリケーションにおいてデータベース基盤の移行(Supabase)および関連機能の改修。技術スタック: Go / TypeScript / Supabase', date: '2025年12月~現在', category: 'intern' as const },
+        { id: '3', title: 'セキュリティ・キャンプミニ2025オンライン (IPA主催) 参加', description: 'LLMアプリケーションの脅威分析やマルチエージェントシステム,RFCに基づくプロトコル実装を含む技術を横断的に学習。技術スタック: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: '2025年10月', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
+        { id: '4', title: '株式会社Logglass 1week インターン 参加', description: 'ソフトウェアエンジニアとして参加。ドメイン駆動設計(DDD)に基づいた経営管理支援システムを開発。アジャイル開発とクリーンアーキテクチャを習得。技術スタック: Kotlin / TypeScript / SQL / DDD / アジャイル/スクラム / クリーンアーキテクチャ', date: '2025年9月', category: 'intern' as const },
+        { id: '5', title: '株式会社WorksApplications 1week インターン 参加', description: 'DX企画職として参加。ユーザー視点に立った業務効率化の提案を作成。技術スタック: DX戦略 / 業務プロセス分析 / ユーザーリサーチ', date: '2025年9月', category: 'intern' as const },
+        { id: '6', title: 'セキュリティ・キャンプミニ2025 山梨 (IPA主催) 参加', description: 'C++の最新規格を用いた堅牢なクラス設計や、フィッシングサイト・DDoS攻撃の解析と防御手法を集中的にハンズオン。技術スタック: C++ / PHP / Malware Analysis', date: '2025年9月', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/yamanashi2025.html' },
+        { id: '7', title: 'GCI Summer2025 (東京大学松尾・岩澤研究室 主催) 修了', description: 'Pythonを用いたデータ分析から機械学習実装,ビジネスへの応用までを網羅。Kaggle形式のコンペティションを通じてデータ解析スキルを研鑽。技術スタック: Python(Pandas,Scikit-learn) / SQL / Data Science / Machine Learning', date: '2025年9月', category: 'lecture' as const },
+        { id: '8', title: '株式会社Earth Re Pure ボランティア開発', description: '特許技術を持つ化学系企業のホームページ制作を一人で実施。技術面ではドメイン移管,サーバー選定,SEO改善,フォーム実装、内容面では技術専門家とのインタビューを通して記事を制作した。現在も運営中。技術スタック: PHP / JavaScript / CSS', date: '2025年8月~現在', category: 'intern' as const },
+        { id: '9', title: 'DeepLearning(深層学習)基礎講座 (東京大学松尾・岩澤研究室 主催) 修了', description: 'ニューラルネットワークの基礎理論から,CNN,RNN,そしてTransformerや生成モデルといった最先端の深層学習技術までを体系的に習得。JDLA認定講座。技術スタック: Python(PyTorch) / Deep Learning / Transformer / LLM', date: '2025年7月', category: 'lecture' as const },
+        { id: '10', title: 'TrackJob Hackathon 参加', description: '3日間でプロダクトの企画から技術選定,実装,プレゼンまでを実施。カフェイン摂取量の影響を測定するアプリを開発。技術スタック: JavaScript / CSS', date: '2025年5月', category: 'hackathon' as const },
       ],
     },
     works: [
       {
         id: '1',
         title: 'ポートフォリオサイト制作',
-        description: 'このサイト自体が作品の一つです。Next.jsとFramer Motionを活用した、コーヒーをテーマにしたポートフォリオサイト。',
+        description: 'このサイト自体が作品の一つです。Next.js (App Router) による完全静的なポートフォリオサイトを設計・実装し、Cloudflare Pagesにデプロイしています。',
         url: 'https://z-ume01234.pages.dev',
-        technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Lucide React'],
+        technologies: ['Next.js 14 (App Router)', 'TypeScript', 'React 18', 'Tailwind CSS', 'Framer Motion', 'Lucide React', 'Cloudflare Pages', 'GitHub Actions'],
         features: [
-          'レスポンシブな分割画面レイアウト',
-          'スクロール連動アニメーション',
-          '多言語対応（日本語/英語）',
-          'スムーズなページ遷移',
-          'コーヒーテーマのデザインシステム',
+          '完全静的エクスポート(SSG) — サーバー不要、Cloudflare Pagesにデプロイ',
+          'SEO重要ページはServer Components + インタラクティブ要素はClient Componentsで分離',
+          'URLベースの多言語対応(日/英) — hreflang・OGP・JSON-LD構造化データを自動生成',
+          'prebuildスクリプトでMedium・Zenn APIからブログ記事を自動取得',
+          'postbuildスクリプトで日本語ページのhtml lang属性を補正',
+          'コーヒーテーマのデザインシステム（Tailwindカスタムカラーパレット・グラデーション）',
+          'スクロール連動の液体背景アニメーションとインタラクティブな湯気カーソルエフェクト',
+          'レスポンシブ分割画面レイアウト（デスクトップ: 固定サイドバー / モバイル: 縦スクロール）',
         ],
-        longDescription: `このポートフォリオサイトは、開発者としての私の旅路を表現し、モダンなWeb技術と丁寧なデザインを組み合わせています。サイトは、異なる画面サイズに美しく適応する独特の分割画面レイアウトを特徴としており、訪問者に没入感のある体験を提供します。
+        longDescription: `このポートフォリオサイトは、Next.js App Routerを用いた完全静的アプリケーションです。output: 'export' による静的エクスポートでビルド時に全ページをHTMLとして生成し、サーバーランタイムを一切持たずにCloudflare Pages上で配信しています。デプロイはGitHub Actionsによる自動化を行っています。
 
-実装では、Next.js App Routerを活用して最適なパフォーマンスとSEOを実現し、Framer Motionがスムーズなスクロール連動アニメーションを提供してユーザー体験を向上させています。コーヒーテーマのデザインシステムは、温かみのある親しみやすい雰囲気を作り出し、私の個性と開発へのアプローチを反映しています。
+アーキテクチャ面では、Server ComponentsとClient Componentsを役割ごとに分離しています。ブログ・プロジェクト・活動実績などの一覧ページはServer Componentとして実装し、generateStaticParamsでSEOに最適化された静的HTMLを生成。一方、液体背景アニメーション・湯気カーソル・オープニングアニメーションなどのインタラクティブなUIは、Framer Motionを使用したClient Componentで実装しています。
 
-主な特徴には、スクロールの進行に応答する動的な液体背景アニメーション、英語と日本語の両方のオーディエンス向けの多言語サポート、そして私のプロジェクト、実績、ブログ投稿の包括的な展示が含まれます。サイトは完全にレスポンシブで、パフォーマンスに最適化されており、すべてのデバイスで高速な読み込み時間とスムーズな操作を保証します。`,
+多言語対応はライブラリを使用せず、URLプレフィックス(/en, /ja)方式で実装しました。各ページはビルド時に両言語分を生成し、postbuildスクリプトで日本語ページのhtml lang属性を補正しています（ルートレイアウトが単一のlang値を適用するため）。SEOメタデータとしてhreflang・OGPタグ・JSON-LD構造化データ（Person, BreadcrumbList）をページごとに生成しています。
+
+prebuildステップでは、Node.jsスクリプトがMedium（RSS）とZenn（API）から最新記事を取得し、共通のblogPosts.jsonに正規化して静的データとしてインポートします。これにより、ランタイムAPIコールなしにブログコンテンツを最新に保っています。
+
+ビジュアル面では、コーヒーをテーマにしたTailwindカスタム設定を基盤とし、6色のブランドカラー(cream, latte, beige, brown, dark, espresso)とグラデーションユーティリティを定義しています。オープニングアニメーション、スクロール進行に同期した液体波背景、マウス追従の湯気カーソルエフェクトにより、統一感のある没入体験を実現しています。`,
       },
       {
         id: '2',

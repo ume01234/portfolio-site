@@ -45,8 +45,22 @@ export default function ActivitiesPage({
                     {event.date}
                   </span>
                 </div>
-                <h2 className="text-lg font-semibold text-coffee-espresso mb-2">{event.title}</h2>
-                <p className="text-sm text-coffee-dark/70 leading-relaxed">{event.description}</p>
+                <h2 className="text-lg font-semibold text-coffee-espresso mb-2">
+                  {event.url ? (
+                    <a href={event.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-coffee-brown transition-colors">
+                      {event.title}
+                    </a>
+                  ) : (
+                    event.title
+                  )}
+                </h2>
+                <p className="text-sm text-coffee-dark/70 leading-relaxed">
+                  {(() => {
+                    const sep = event.description.match(/技術スタック:|Tech stack:/);
+                    if (!sep || sep.index === undefined) return event.description;
+                    return <>{event.description.slice(0, sep.index)}<br />{event.description.slice(sep.index)}</>;
+                  })()}
+                </p>
               </AnimatedListItem>
             ))}
           </div>

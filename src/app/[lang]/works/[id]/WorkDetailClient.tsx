@@ -131,18 +131,6 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div className="w-full h-48 bg-coffee-latte/30 rounded-lg flex items-center justify-center border border-coffee-brown/20">
-                <span className="text-coffee-brown/40 text-sm font-serif">
-                  {isJapanese ? 'スクリーンショット 1' : 'Screenshot 1'}
-                </span>
-              </div>
-              <div className="w-full h-48 bg-coffee-latte/30 rounded-lg flex items-center justify-center border border-coffee-brown/20">
-                <span className="text-coffee-brown/40 text-sm font-serif">
-                  {isJapanese ? 'スクリーンショット 2' : 'Screenshot 2'}
-                </span>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>

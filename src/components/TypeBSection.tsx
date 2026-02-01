@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 interface TypeBSectionProps {
   title: string;
-  chunks: string[][];
+  chunks: { text: string; date: string }[][];
 }
 
 export default function TypeBSection({ title, chunks }: TypeBSectionProps) {
@@ -27,7 +27,8 @@ export default function TypeBSection({ title, chunks }: TypeBSectionProps) {
               <ul className="space-y-2 border-l-2 border-coffee-brown/20 pl-6">
                 {chunk.map((item, j) => (
                   <li key={j} className="text-coffee-dark font-medium whitespace-nowrap">
-                    {item}
+                    <span className="text-coffee-dark/50 font-mono text-sm mr-2">{item.date}</span>
+                    {item.text}
                   </li>
                 ))}
               </ul>
@@ -38,4 +39,3 @@ export default function TypeBSection({ title, chunks }: TypeBSectionProps) {
     </section>
   );
 }
-

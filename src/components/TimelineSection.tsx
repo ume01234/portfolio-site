@@ -75,10 +75,20 @@ export default function TimelineSection({
                 </span>
               </div>
               <h3 className="text-base md:text-lg font-bold text-coffee-espresso">
-                {event.title}
+                {event.url ? (
+                  <a href={event.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-coffee-brown transition-colors">
+                    {event.title}
+                  </a>
+                ) : (
+                  event.title
+                )}
               </h3>
               <p className="text-sm text-coffee-dark/70 leading-relaxed mt-1">
-                {event.description}
+                {(() => {
+                  const sep = event.description.match(/技術スタック:|Tech stack:/);
+                  if (!sep || sep.index === undefined) return event.description;
+                  return <>{event.description.slice(0, sep.index)}<br />{event.description.slice(sep.index)}</>;
+                })()}
               </p>
             </motion.div>
           ))}
