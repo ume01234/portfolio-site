@@ -9,6 +9,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="dns-prefetch" href="https://cdn-images-1.medium.com" />
+        <link rel="dns-prefetch" href="https://zenn.dev" />
+      </head>
       <body>{children}</body>
     </html>
   );

@@ -12,7 +12,7 @@
 - コーヒー注入モチーフのオープニングアニメーション（クリック/時間経過でスキップ可能）
 - 多言語対応（英語・日本語のURL切替方式、言語切替時はオープニングをスキップして即表示）
 - Server Component活用（一覧ページは静的HTMLに本文コンテンツを直接出力し、アニメーション部分のみClient Component）
-- ブログ記事の自動取得（Zenn / Medium / Note からビルド時に並列フェッチ）
+- ブログ記事の自動取得（Zenn / Medium からビルド時に並列フェッチ）
 - SEO最適化（Person構造化データ、hreflang、OGP、サイトマップ、robots.txt）
 - Cloudflare Pages + GitHub Actionsによる自動デプロイ
 
@@ -32,6 +32,7 @@ src/
 ├── app/                        # Next.js App Router
 │   ├── layout.tsx              # ルートレイアウト（最小限、CSSのみ）
 │   ├── page.tsx                # ルート（/en/ へリダイレクト）
+│   ├── globals.css             # グローバルスタイル（Tailwindディレクティブ、カスタムCSS）
 │   ├── [lang]/                 # 言語別ルート（/en/..., /ja/...）
 │   │   ├── layout.tsx          # 言語別メタデータ・構造化データ（SEO）
 │   │   ├── layout-client.tsx   # クライアント側レイアウト（オープニング・表示制御）
@@ -39,8 +40,10 @@ src/
 │   │   ├── blog/page.tsx       # ブログ一覧（Server Component）
 │   │   ├── works/
 │   │   │   ├── page.tsx        # 作品一覧（Server Component）
-│   │   │   ├── layout.tsx      # 作品詳細レイアウト
-│   │   │   └── [id]/           # 作品詳細ページ
+│   │   │   ├── layout.tsx      # 作品レイアウト
+│   │   │   └── [id]/
+│   │   │       ├── page.tsx            # 作品詳細ページ（Server Component）
+│   │   │       └── WorkDetailClient.tsx # 作品詳細クライアントコンポーネント
 │   │   └── activities/page.tsx # 活動実績一覧（Server Component）
 │   ├── robots.ts               # robots.txt生成
 │   └── sitemap.ts              # サイトマップ生成（両言語対応）
@@ -55,15 +58,14 @@ src/
 │   ├── SteamCursor.tsx         # カーソル追従の湯気エフェクト
 │   ├── ScrollToTop.tsx         # トップへ戻るボタン
 │   ├── TimelineSection.tsx     # タイムライン表示セクション
-│   ├── TypeBSection.tsx        # TypeBレイアウトセクション
-│   └── StarBackground.tsx      # 星空背景アニメーション
+│   └── TypeBSection.tsx        # TypeBレイアウトセクション
 ├── contexts/                   # React Context
 │   └── LanguageContext.tsx      # 言語コンテキスト（URLから言語を共有）
 └── lib/                        # ユーティリティ・データ
     ├── data.ts                 # プロフィール、Works、Blog等のデータ（多言語対応）
     └── blogPosts.json          # ブログ記事データ（prebuildで自動生成）
 scripts/
-├── prebuild.mjs                # ビルド前処理（Zenn/Medium/Note記事の自動取得）
+├── prebuild.mjs                # ビルド前処理（Zenn/Medium記事の自動取得）
 └── postbuild.mjs               # ビルド後処理（日本語ページのhtml lang属性修正）
 ```
 
@@ -104,5 +106,5 @@ Cloudflare Pagesへの自動デプロイはGitHub Actionsで設定されてい�
 - **SSR時のコンテンツ出力**: layout-client.tsxでchildrenを常にDOMに配置し、CSSのopacity制御で表示を切り替えることで、SSR時もHTMLにコンテンツが含まれる設計（ハイドレーションミスマッチなし）
 - **スクロール連動アニメーション**: `requestAnimationFrame`でスクロール進捗を計算し、液体背景やセクション表示と連動
 - **多言語対応**: URLプレフィックス方式（`/en/...`, `/ja/...`）で言語管理。`generateStaticParams()`により全ページを両言語で静的生成
-- **ブログ記事の自動収集**: prebuildスクリプトでZenn・Medium・NoteのAPIから記事を並列取得し、JSONに書き出してビルド時にページに反映
+- **ブログ記事の自動収集**: prebuildスクリプトでZenn・MediumのAPIから記事を並列取得し、JSONに書き出してビルド時にページに反映
 

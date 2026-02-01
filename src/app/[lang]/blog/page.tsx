@@ -46,7 +46,7 @@ export default function BlogPage({
                       {post.platform === 'Medium' && post.thumbnail ? (
                         <img
                           src={post.thumbnail}
-                          alt=""
+                          alt={post.title}
                           className="w-full h-full object-cover"
                         />
                       ) : post.platform === 'Zenn' && post.emoji ? (

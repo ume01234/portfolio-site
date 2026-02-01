@@ -424,7 +424,7 @@ export default function Home() {
                           <>
                             <img
                               src={post.thumbnail}
-                              alt=""
+                              alt={post.title}
                               className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-coffee-espresso/0 group-hover:bg-coffee-espresso/10 transition-colors duration-300" />
@@ -509,7 +509,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="px-6 py-12 border-t border-coffee-brown/10 bg-[#fffdf9]">
-          <div className="text-center text-sm space-y-2" style={{ color: '#B0E0E6' }}>
+          <div className="text-center text-sm space-y-2" style={{ color: '#9AACB4' }}>
             <p>© {new Date().getFullYear()} {data.profileData.name}</p>
             <p>
               <a

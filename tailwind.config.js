@@ -17,10 +17,7 @@ module.exports = {
           espresso: '#3e2723',
         },
       },
-      backgroundImage: {
-        'coffee-gradient': 'linear-gradient(to bottom, #5d4e37, #3e2723, #2c1810)',
-        'coffee-liquid': 'linear-gradient(180deg, #5d4e37 0%, #3e2723 50%, #2c1810 100%)',
-      },
+
       fontFamily: {
         serif: ['"Noto Serif JP"', 'serif'],
       },
