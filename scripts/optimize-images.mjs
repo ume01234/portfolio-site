@@ -6,6 +6,8 @@ const ROOT = new URL('..', import.meta.url).pathname;
 const WORKS_DIR = join(ROOT, 'public/images/works');
 const OGP_SRC = join(ROOT, 'public/images/ogp-image.png');
 const OGP_DST = join(ROOT, 'public/images/ogp-image.webp');
+const FACE_SRC = join(ROOT, 'public/images/my-face.png');
+const FACE_DST = join(ROOT, 'public/images/my-face.webp');
 
 async function needsUpdate(src, dst) {
   try {
@@ -44,7 +46,18 @@ async function convertOgpImage() {
   console.log(`[ok]   ogp-image.png -> ogp-image.webp`);
 }
 
+async function convertFaceImage() {
+  if (!(await needsUpdate(FACE_SRC, FACE_DST))) {
+    console.log(`[skip] my-face.webp is up to date`);
+    return;
+  }
+
+  await sharp(FACE_SRC).webp({ quality: 80 }).toFile(FACE_DST);
+  console.log(`[ok]   my-face.png -> my-face.webp`);
+}
+
 console.log('--- optimize-images ---');
 await convertWorksImages();
 await convertOgpImage();
+await convertFaceImage();
 console.log('--- done ---');

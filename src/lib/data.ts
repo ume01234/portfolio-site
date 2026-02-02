@@ -63,7 +63,8 @@ const data = {
       name: 'Rikuto Hashizume',
       catchCopy: 'The Brewing Engineer',
       vision: 'Creating new worlds through technology',
-      aboutMe: `Data science, web engineering, acoustics, cognitive science,
+      aboutMe: `From Sanda, Hyogo.
+Data science, web engineering, acoustics, cognitive science,
 HCI, philosophy, physics — a generalist fascinated by a wide range of fields.
 
 In an era where technology and society are changing at a dizzying pace,
@@ -76,6 +77,7 @@ Drawing on a lifelong engagement with music and my perspective as someone with h
         { text: 'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment', date: 'Apr 2023' },
         { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
         { text: 'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation', date: 'Jan 2025', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
+        { text: 'Lab Member Page', url: 'https://digitalnature.slis.tsukuba.ac.jp/2025/12/rikuto-hashizume/' },
       ],
     },
     achievements: {
@@ -86,7 +88,8 @@ Drawing on a lifelong engagement with music and my perspective as someone with h
       ],
       activityEvents: [
         { id: '1', title: 'E-Certification Preparation Course (Completed)', description: 'Acquired advanced AI engineering knowledge connecting deep learning fundamentals to E-Certification qualification. Tech stack: Python(PyTorch) / Numpy / Applied Mathematics / Model Optimization / Backpropagation', date: 'Jan 2026', category: 'lecture' as const },
-        // { id: '2', title: 'Queue Inc. Engineer (Contract Development)', description: 'Database migration (Supabase) and feature improvements for a business support application that centrally manages advertising and listing information across multiple web services. Tech stack: Go / TypeScript / Supabase', date: 'Dec 2025 - Present', category: 'intern' as const },
+        // Company: Queue Inc. (disclosure pending approval)
+        { id: '2', title: 'Contract Engineer', description: 'Database migration (Supabase) and feature improvements for a business support application that centrally manages advertising and listing information across multiple web services. Tech stack: Go / TypeScript / Supabase', date: 'Dec 2025 - Present', category: 'intern' as const },
         { id: '3', title: 'Security Mini Camp 2025 Online (IPA) - Participated', description: 'Cross-disciplinary learning covering LLM application threat analysis, multi-agent systems, and RFC-based protocol implementation. Tech stack: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: 'Oct 2025', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
         { id: '4', title: 'Logglass 1-Week Engineer Intern', description: 'Participated as a software engineer. Developed a management support system based on Domain-Driven Design (DDD). Learned agile development and clean architecture. Tech stack: Kotlin / TypeScript / SQL / DDD / Agile/Scrum / Clean Architecture', date: 'Sep 2025', category: 'intern' as const },
         { id: '5', title: 'Works Applications 1-Week DX Planning Intern', description: 'Participated as a DX planner. Created business efficiency improvement proposals from a user perspective. Tech stack: DX Strategy / Business Process Analysis / User Research', date: 'Sep 2025', category: 'intern' as const },
@@ -253,8 +256,9 @@ The project was executed on Google Colab.`,
       name: '橋爪 陸人',
       catchCopy: '技術と感性を、一杯の価値へ',
       vision: '技術を通じて新しい世界を創造する',
-      aboutMe: `データサイエンス、Webエンジニアリング、音響学、認知科学、HCI、哲学、物理学  
-      ——幅広い領域に魅了されているジェネラリスト。
+      aboutMe: `兵庫県三田市出身。
+Webエンジニアリング, データサイエンス, 音響学, 認知科学, HCI, 哲学, 物理学
+——幅広い領域に魅了されているジェネラリスト。
 
 技術も社会も目まぐるしく変化する時代だからこそ、  
 複雑な技術と本質的な価値をつなぐ**架け橋**が必要である。
@@ -267,6 +271,7 @@ The project was executed on Google Colab.`,
         { text: '筑波大学総合学域群 理系3　入学', date: '2023年4月' },
         { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
         { text: 'Digital Nature Group(落合陽一研究室)　所属', date: '2025年1月', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
+        { text: '所属研究室 個人ページ', url: 'https://digitalnature.slis.tsukuba.ac.jp/2025/12/rikuto-hashizume/' },
       ],
     },
     achievements: {
@@ -277,7 +282,8 @@ The project was executed on Google Colab.`,
       ],
       activityEvents: [
         { id: '1', title: 'E資格対策講座 修了', description: '深層学習基礎講座修了からE資格合格までを接続する高度なAIエンジニアリング知識を習得。技術スタック: Python(PyTorch) / Numpy / 応用数学 / モデル最適化 / 誤差逆伝播法', date: '2026年1月', category: 'lecture' as const },
-        // { id: '2', title: 'Queue株式会社 エンジニア(業務委託開発)', description: '複数Webサービスに対する広告・掲載情報を一元管理する業務支援アプリケーションにおいてデータベース基盤の移行(Supabase)および関連機能の改修。技術スタック: Go / TypeScript / Supabase', date: '2025年12月~現在', category: 'intern' as const },
+        // 会社名: Queue株式会社（公開許可確認中）
+        { id: '2', title: 'エンジニア(業務委託開発)', description: '複数Webサービスに対する広告・掲載情報を一元管理する業務支援アプリケーションにおいてデータベース基盤の移行(Supabase)および関連機能の改修。技術スタック: Go / TypeScript / Supabase', date: '2025年12月~現在', category: 'intern' as const },
         { id: '3', title: 'セキュリティ・キャンプミニ2025オンライン (IPA主催) 参加', description: 'LLMアプリケーションの脅威分析やマルチエージェントシステム,RFCに基づくプロトコル実装を含む技術を横断的に学習。技術スタック: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: '2025年10月', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
         { id: '4', title: '株式会社Logglass 1week インターン 参加', description: 'ソフトウェアエンジニアとして参加。ドメイン駆動設計(DDD)に基づいた経営管理支援システムを開発。アジャイル開発とクリーンアーキテクチャを習得。技術スタック: Kotlin / TypeScript / SQL / DDD / アジャイル/スクラム / クリーンアーキテクチャ', date: '2025年9月', category: 'intern' as const },
         { id: '5', title: '株式会社WorksApplications 1week インターン 参加', description: 'DX企画職として参加。ユーザー視点に立った業務効率化の提案を作成。技術スタック: DX戦略 / 業務プロセス分析 / ユーザーリサーチ', date: '2025年9月', category: 'intern' as const },

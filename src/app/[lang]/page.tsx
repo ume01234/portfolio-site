@@ -265,13 +265,24 @@ export default function Home() {
           <h2 className="text-xl md:text-2xl font-bold mb-8 text-coffee-espresso">
             {data.sections.aboutMe}
           </h2>
-          <div className="text-coffee-dark leading-relaxed whitespace-pre-line text-lg max-w-4xl">
-            {data.profileData.aboutMe.split(/\*\*(.*?)\*\*/g).map((part, index) => {
-              if (index % 2 === 1) {
-                return <strong key={index}>{part}</strong>;
-              }
-              return <span key={index}>{part}</span>;
-            })}
+          <div className="flex flex-col md:flex-row md:items-center md:gap-12 gap-6">
+            <div className="text-coffee-dark leading-relaxed whitespace-pre-line text-lg max-w-4xl md:flex-1">
+              {data.profileData.aboutMe.split(/\*\*(.*?)\*\*/g).map((part, index) => {
+                if (index % 2 === 1) {
+                  return <strong key={index}>{part}</strong>;
+                }
+                return <span key={index}>{part}</span>;
+              })}
+            </div>
+            <div className="flex justify-center md:flex-shrink-0">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-coffee-brown/20 shadow-md">
+                <img
+                  src="/images/my-face.webp"
+                  alt={data.profileData.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -291,14 +302,14 @@ export default function Home() {
               >
                 <ul className="space-y-2 border-l-2 border-coffee-brown/20 pl-6">
                   {data.profileData.education.map((item, index) => (
-                    <li key={index} className="text-coffee-dark font-medium whitespace-nowrap">
-                      <span className="text-coffee-dark/50 font-mono text-sm mr-2">{item.date}</span>
+                    <li key={index} className="text-coffee-dark font-medium whitespace-nowrap flex">
+                      <span className="text-coffee-dark/50 font-mono text-sm mr-2 inline-block min-w-[5rem] shrink-0">{item.date}</span>
                       {item.url ? (
                         <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-coffee-brown transition-colors">
                           {item.text}
                         </a>
                       ) : (
-                        item.text
+                        <span>{item.text}</span>
                       )}
                     </li>
                   ))}

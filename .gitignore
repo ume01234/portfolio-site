@@ -53,6 +53,7 @@ Thumbs.db
 # generated WebP images
 public/images/works/*.webp
 public/images/ogp-image.webp
+public/images/my-face.webp
 
 memo.md
 data.md

@@ -1,7 +1,7 @@
 {
-  "name": "portfolio-Hashizume",
+  "name": "Rikuto Hashizume | Portfolio",
   "short_name": "Hashizume",
-  "description": "データサイエンスとWebエンジニアリングを主軸に、ジェネラティブアートの感性をスパイスとして加えるエンジニアのポートフォリオサイト",
+  "description": "データサイエンス、Webエンジニアリング、音響学、認知科学など幅広い領域を横断するジェネラリストエンジニアのポートフォリオサイト",
   "icons": [
     {
       "src": "/images/favicon-16x16.png",
