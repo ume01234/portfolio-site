@@ -10,10 +10,12 @@
 
 - コーヒーをテーマにしたデザイン（液体の波打つ背景、スクロール連動の「コーヒーを飲む」演出、カーソル追従の湯気エフェクト）
 - コーヒー注入モチーフのオープニングアニメーション（クリック/時間経過でスキップ可能）
-- 多言語対応（英語・日本語のURL切替方式、言語切替時はオープニングをスキップして即表示）
+- 多言語対応（英語・日本語のURL切替方式、ブラウザ言語による自動リダイレクト、言語切替時はオープニングをスキップして即表示）
 - Server Component活用（一覧ページは静的HTMLに本文コンテンツを直接出力し、アニメーション部分のみClient Component）
 - ブログ記事の自動取得（Zenn / Medium からビルド時に並列フェッチ）
+- ビルド時画像最適化（PNG → WebP自動変換、sharpによる圧縮・リサイズ）
 - SEO最適化（Person構造化データ、hreflang、OGP、サイトマップ、robots.txt）
+- Google Analytics対応
 - Cloudflare Pages + GitHub Actionsによる自動デプロイ
 
 ## 技術スタック
@@ -24,14 +26,15 @@
 - **Tailwind CSS 3.4.1**
 - **Framer Motion 11.0.0**
 - **Lucide React 0.344.0**
+- **sharp** (ビルド時画像最適化)
 
 ## プロジェクト構造
 
 ```
 src/
 ├── app/                        # Next.js App Router
-│   ├── layout.tsx              # ルートレイアウト（最小限、CSSのみ）
-│   ├── page.tsx                # ルート（/en/ へリダイレクト）
+│   ├── layout.tsx              # ルートレイアウト（Google Fonts読み込み、Google Analytics）
+│   ├── page.tsx                # ルート（ブラウザ言語判定 → /en/ or /ja/ へリダイレクト）
 │   ├── globals.css             # グローバルスタイル（Tailwindディレクティブ、カスタムCSS）
 │   ├── [lang]/                 # 言語別ルート（/en/..., /ja/...）
 │   │   ├── layout.tsx          # 言語別メタデータ・構造化データ（SEO）
@@ -63,9 +66,11 @@ src/
 │   └── LanguageContext.tsx      # 言語コンテキスト（URLから言語を共有）
 └── lib/                        # ユーティリティ・データ
     ├── data.ts                 # プロフィール、Works、Blog等のデータ（多言語対応）
+    ├── activity-utils.tsx      # 活動実績の共通ユーティリティ（カテゴリスタイル、説明文フォーマット）
     └── blogPosts.json          # ブログ記事データ（prebuildで自動生成）
 scripts/
 ├── prebuild.mjs                # ビルド前処理（Zenn/Medium記事の自動取得）
+├── optimize-images.mjs         # 画像最適化（PNG → WebP変換、sharpによる圧縮）
 └── postbuild.mjs               # ビルド後処理（日本語ページのhtml lang属性修正）
 ```
 
@@ -107,4 +112,6 @@ Cloudflare Pagesへの自動デプロイはGitHub Actionsで設定されてい�
 - **スクロール連動アニメーション**: `requestAnimationFrame`でスクロール進捗を計算し、液体背景やセクション表示と連動
 - **多言語対応**: URLプレフィックス方式（`/en/...`, `/ja/...`）で言語管理。`generateStaticParams()`により全ページを両言語で静的生成
 - **ブログ記事の自動収集**: prebuildスクリプトでZenn・MediumのAPIから記事を並列取得し、JSONに書き出してビルド時にページに反映
+- **ビルド時画像最適化**: sharpによるPNG → WebP自動変換（works画像: quality 80、OGP: 1200x630 quality 85、プロフィール写真: quality 80）。既にWebPが最新の場合はスキップする冪等設計
+- **Google Fonts読み込み**: Noto Serif JPをルートレイアウトで`<link>`タグにより読み込み、`font-display: swap`で表示パフォーマンスを確保
 

@@ -27,7 +27,7 @@ export default function TypeBSection({ title, chunks }: TypeBSectionProps) {
               <ul className="space-y-2 border-l-2 border-coffee-brown/20 pl-6">
                 {chunk.map((item, j) => (
                   <li key={j} className="text-coffee-dark font-medium whitespace-nowrap">
-                    <span className="text-coffee-dark/50 font-mono text-sm mr-2">{item.date}</span>
+                    <span className="inline-block min-w-[6rem] text-coffee-dark/50 font-mono text-sm mr-2">{item.date}</span>
                     {item.text}
                   </li>
                 ))}
