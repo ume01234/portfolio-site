@@ -265,7 +265,7 @@ export default function Home() {
           <h2 className="text-xl md:text-2xl font-bold mb-8 text-coffee-espresso">
             {data.sections.aboutMe}
           </h2>
-          <div className="text-coffee-dark leading-relaxed whitespace-pre-line text-lg max-w-4xl mx-auto">
+          <div className="text-coffee-dark leading-relaxed whitespace-pre-line text-lg max-w-4xl">
             {data.profileData.aboutMe.split(/\*\*(.*?)\*\*/g).map((part, index) => {
               if (index % 2 === 1) {
                 return <strong key={index}>{part}</strong>;

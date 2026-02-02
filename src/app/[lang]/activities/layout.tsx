@@ -19,10 +19,10 @@ export async function generateMetadata({
     : `${data.sections.activityEvents} page. Internships, lectures, and hackathons.`;
 
   return {
-    title: `${data.sections.activityEvents} - portfolio-Hashizume`,
+    title: `${data.sections.activityEvents} | Rikuto Hashizume`,
     description,
     openGraph: {
-      title: `${data.sections.activityEvents} - portfolio-Hashizume`,
+      title: `${data.sections.activityEvents} | Rikuto Hashizume`,
       description,
       url: `${siteUrl}/${lang}/activities`,
       locale: isJa ? 'ja_JP' : 'en_US',
@@ -32,13 +32,13 @@ export async function generateMetadata({
           url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
-          alt: `${data.sections.activityEvents} - portfolio-Hashizume`,
+          alt: `${data.sections.activityEvents} | Rikuto Hashizume`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.sections.activityEvents} - portfolio-Hashizume`,
+      title: `${data.sections.activityEvents} | Rikuto Hashizume`,
       description,
       images: ['/images/ogp-image.webp'],
     },

@@ -20,10 +20,10 @@ export async function generateMetadata({
     : `${data.sections.blog} page. Technical articles and blog posts.`;
 
   return {
-    title: `${data.sections.blog} - portfolio-Hashizume`,
+    title: `${data.sections.blog} | Rikuto Hashizume`,
     description,
     openGraph: {
-      title: `${data.sections.blog} - portfolio-Hashizume`,
+      title: `${data.sections.blog} | Rikuto Hashizume`,
       description,
       url: `${siteUrl}/${lang}/blog`,
       locale: isJa ? 'ja_JP' : 'en_US',
@@ -33,13 +33,13 @@ export async function generateMetadata({
           url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
-          alt: `${data.sections.blog} - portfolio-Hashizume`,
+          alt: `${data.sections.blog} | Rikuto Hashizume`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.sections.blog} - portfolio-Hashizume`,
+      title: `${data.sections.blog} | Rikuto Hashizume`,
       description,
       images: ['/images/ogp-image.webp'],
     },

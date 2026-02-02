@@ -19,10 +19,10 @@ export async function generateMetadata({
     : `${data.sections.works} page. Showcasing projects and creations.`;
 
   return {
-    title: `${data.sections.works} - portfolio-Hashizume`,
+    title: `${data.sections.works} | Rikuto Hashizume`,
     description,
     openGraph: {
-      title: `${data.sections.works} - portfolio-Hashizume`,
+      title: `${data.sections.works} | Rikuto Hashizume`,
       description,
       url: `${siteUrl}/${lang}/works`,
       locale: isJa ? 'ja_JP' : 'en_US',
@@ -32,13 +32,13 @@ export async function generateMetadata({
           url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
-          alt: `${data.sections.works} - portfolio-Hashizume`,
+          alt: `${data.sections.works} | Rikuto Hashizume`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.sections.works} - portfolio-Hashizume`,
+      title: `${data.sections.works} | Rikuto Hashizume`,
       description,
       images: ['/images/ogp-image.webp'],
     },

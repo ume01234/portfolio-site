@@ -21,7 +21,7 @@ export async function generateMetadata({
   const lang = params.lang as Language;
   const isJa = lang === 'ja';
 
-  const title = 'portfolio-Hashizume | Rikuto Hashizume - Data Science & Web Engineering';
+  const title = 'Rikuto Hashizume | Portfolio';
   const description = isJa
     ? 'データサイエンス、Webエンジニアリング、ロボティクスを横断するジェネラリストエンジニア。複雑な技術から本質的な価値を抽出し、ビジネスやユーザーに届ける架け橋となることを目指しています。筑波大学所属。'
     : 'A generalist engineer spanning Data Science, Web Engineering, and Robotics. Aiming to bridge the gap between complex technology and essential value for businesses and users. Based at the University of Tsukuba.';
@@ -47,10 +47,10 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: 'portfolio-Hashizume | Rikuto Hashizume',
+      title: 'Rikuto Hashizume | Portfolio',
       description: ogDescription,
       url: `${siteUrl}/${lang}/`,
-      siteName: 'portfolio-Hashizume',
+      siteName: 'Rikuto Hashizume | Portfolio',
       locale: isJa ? 'ja_JP' : 'en_US',
       type: 'website',
       images: [
@@ -58,13 +58,13 @@ export async function generateMetadata({
           url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
-          alt: 'portfolio-Hashizume',
+          alt: 'Rikuto Hashizume | Portfolio',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'portfolio-Hashizume | Rikuto Hashizume',
+      title: 'Rikuto Hashizume | Portfolio',
       description: ogDescription,
       images: ['/images/ogp-image.webp'],
     },

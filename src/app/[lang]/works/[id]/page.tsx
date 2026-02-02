@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
   }
 
   return {
-    title: `${work.title} - portfolio-Hashizume`,
+    title: `${work.title} | Rikuto Hashizume`,
     description: work.description,
     openGraph: {
       title: work.title,
