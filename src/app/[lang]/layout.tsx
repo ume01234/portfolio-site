@@ -55,7 +55,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/images/ogp-image.png',
+          url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
           alt: 'portfolio-Hashizume',
@@ -66,7 +66,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: 'portfolio-Hashizume | Rikuto Hashizume',
       description: ogDescription,
-      images: ['/images/ogp-image.png'],
+      images: ['/images/ogp-image.webp'],
     },
     icons: {
       icon: [

@@ -29,7 +29,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/images/ogp-image.png',
+          url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
           alt: `${data.sections.activityEvents} - portfolio-Hashizume`,
@@ -40,7 +40,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${data.sections.activityEvents} - portfolio-Hashizume`,
       description,
-      images: ['/images/ogp-image.png'],
+      images: ['/images/ogp-image.webp'],
     },
     alternates: {
       canonical: `${siteUrl}/${lang}/activities`,

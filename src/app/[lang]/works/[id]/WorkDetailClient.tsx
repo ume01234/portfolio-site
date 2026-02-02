@@ -63,7 +63,7 @@ export default function WorkDetailClient({ workId }: WorkDetailClientProps) {
 
             <div className="w-full h-64 md:h-96 rounded-lg mb-8 overflow-hidden border border-coffee-brown/20">
               <img
-                src={`/images/works/work-${work.id}.png`}
+                src={`/images/works/work-${work.id}.webp`}
                 alt={work.title}
                 className="w-full h-full object-cover"
               />

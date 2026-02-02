@@ -30,7 +30,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/images/ogp-image.png',
+          url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
           alt: `${data.sections.blog} - portfolio-Hashizume`,
@@ -41,7 +41,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${data.sections.blog} - portfolio-Hashizume`,
       description,
-      images: ['/images/ogp-image.png'],
+      images: ['/images/ogp-image.webp'],
     },
     alternates: {
       canonical: `${siteUrl}/${lang}/blog`,

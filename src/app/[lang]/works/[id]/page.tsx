@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
       type: 'website',
       images: [
         {
-          url: '/images/ogp-image.png',
+          url: '/images/ogp-image.webp',
           width: 1200,
           height: 630,
           alt: work.title,
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
       card: 'summary_large_image',
       title: work.title,
       description: work.description,
-      images: ['/images/ogp-image.png'],
+      images: ['/images/ogp-image.webp'],
     },
     alternates: {
       canonical: `${siteUrl}/${lang}/works/${work.id}`,

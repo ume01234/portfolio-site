@@ -50,5 +50,9 @@ Thumbs.db
 
 .claude
 
+# generated WebP images
+public/images/works/*.webp
+public/images/ogp-image.webp
+
 memo.md
 data.md
