@@ -494,5 +494,3 @@ export function getData(language: Language = 'en') {
   return data[language];
 }
 
-// ブログ記事データ（言語共通、prebuildスクリプトで生成）
-export { blogPostsData };

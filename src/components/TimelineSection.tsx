@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { ActivityEvent } from '@/lib/data';
+import { categoryStyles, formatDescription } from '@/lib/activity-utils';
 
 interface TimelineSectionProps {
   title: string;
@@ -11,14 +12,7 @@ interface TimelineSectionProps {
   viewAllLink?: string;
   viewAllText?: string;
   categoryLabels: Record<string, string>;
-  language: string;
 }
-
-const categoryStyles: Record<string, string> = {
-  intern: 'bg-coffee-brown/10 text-coffee-brown',
-  lecture: 'bg-coffee-latte/50 text-coffee-dark',
-  hackathon: 'bg-coffee-espresso/10 text-coffee-espresso',
-};
 
 export default function TimelineSection({
   title,
@@ -84,11 +78,7 @@ export default function TimelineSection({
                 )}
               </h3>
               <p className="text-sm text-coffee-dark/70 leading-relaxed mt-1">
-                {(() => {
-                  const sep = event.description.match(/技術スタック:|Tech stack:/);
-                  if (!sep || sep.index === undefined) return event.description;
-                  return <>{event.description.slice(0, sep.index)}<br />{event.description.slice(sep.index)}</>;
-                })()}
+                {formatDescription(event.description)}
               </p>
             </motion.div>
           ))}

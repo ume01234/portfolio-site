@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Github, Linkedin, BookOpen, FileText, /* PenTool, */ Newspaper, Mail } from 'lucide-react';
+import { Github, Linkedin, FileText, /* PenTool, */ Newspaper, Mail } from 'lucide-react';
 import {
   getData,
   socialLinks,
@@ -19,7 +19,6 @@ import ScrollToTop from '@/components/ScrollToTop';
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   github: Github,
   linkedin: Linkedin,
-  'book-open': BookOpen,
   'file-text': FileText,
   // 'pen-tool': PenTool, // Note連携一時無効化
   newspaper: Newspaper,
@@ -332,7 +331,6 @@ export default function Home() {
           viewAllLink={`/${language}/activities`}
           viewAllText={data.sections.viewAll}
           categoryLabels={data.categoryLabels}
-          language={language}
         />
 
         {/* Section 5: Works (Netflix-style) */}

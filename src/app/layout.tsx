@@ -13,6 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet" />
         <link rel="dns-prefetch" href="https://cdn-images-1.medium.com" />
         <link rel="dns-prefetch" href="https://zenn.dev" />
       </head>

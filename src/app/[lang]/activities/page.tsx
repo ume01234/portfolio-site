@@ -1,16 +1,10 @@
 // 活動実績一覧ページ（Server Component）
 // - インターン・講座・ハッカソン等のイベントデータを静的HTMLとして出力
 import { getData, type Language } from '@/lib/data';
+import { categoryStyles, formatDescription } from '@/lib/activity-utils';
 import PageHeader from '@/components/PageHeader';
 import AnimatedHeading from '@/components/AnimatedHeading';
 import AnimatedListItem from '@/components/AnimatedListItem';
-
-// カテゴリごとのバッジスタイル
-const categoryStyles: Record<string, string> = {
-  intern: 'bg-coffee-brown/10 text-coffee-brown',
-  lecture: 'bg-coffee-latte/50 text-coffee-dark',
-  hackathon: 'bg-coffee-espresso/10 text-coffee-espresso',
-};
 
 export default function ActivitiesPage({
   params,
@@ -55,11 +49,7 @@ export default function ActivitiesPage({
                   )}
                 </h2>
                 <p className="text-sm text-coffee-dark/70 leading-relaxed">
-                  {(() => {
-                    const sep = event.description.match(/技術スタック:|Tech stack:/);
-                    if (!sep || sep.index === undefined) return event.description;
-                    return <>{event.description.slice(0, sep.index)}<br />{event.description.slice(sep.index)}</>;
-                  })()}
+                  {formatDescription(event.description)}
                 </p>
               </AnimatedListItem>
             ))}
