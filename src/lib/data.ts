@@ -77,7 +77,7 @@ we need **bridges** that connect complex technology with essential value.
 My goal is to become someone who can **translate technology into meaningful experiences**.
 
 I actively share my work in English and aim to expand my reach globally.
-Drawing on a lifelong engagement with music and my perspective as someone with hearing differences, my current graduation research explores the **intersection of music and accessibility**.`,
+Drawing on my experience of being close to music since childhood and my perspective as someone with a hearing disability, my current graduation research explores the **intersection of music and accessibility**.`,
       education: [
         { text: 'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment', date: 'Apr 2023' },
         { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
@@ -270,8 +270,8 @@ Webエンジニアリング, データサイエンス, 音響学, 認知科学, 
 私が目指すのは、技術を**意味のある体験に翻訳**できる人。
 
 英語で積極的に発信しており、世界に活動の場を広げていきたいと考えている。
-幼少期からの音楽体験と、聴覚の当事者としての視点を持って、  
-現在卒業研究では**音楽とアクセシビリティの交差点**を探っている。`,
+幼少期から音楽に親しんできた経験と、聴覚障害の当事者としての視点を活かし、  
+現在卒業研究にて**音楽とアクセシビリティの交差点**を探っている。`,
       education: [
         { text: '筑波大学総合学域群 理系3　入学', date: '2023年4月' },
         { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
