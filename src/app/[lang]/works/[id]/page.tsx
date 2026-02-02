@@ -39,11 +39,13 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
     };
   }
 
+  const cleanTitle = work.title.replace(/\|/g, ' ');
+
   return {
-    title: `${work.title} | Rikuto Hashizume`,
+    title: `${cleanTitle} | Rikuto Hashizume`,
     description: work.description,
     openGraph: {
-      title: work.title,
+      title: cleanTitle,
       description: work.description,
       url: `${siteUrl}/${lang}/works/${work.id}`,
       locale: lang === 'ja' ? 'ja_JP' : 'en_US',
@@ -59,7 +61,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
     },
     twitter: {
       card: 'summary_large_image',
-      title: work.title,
+      title: cleanTitle,
       description: work.description,
       images: ['/images/ogp-image.webp'],
     },

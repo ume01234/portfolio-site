@@ -13,6 +13,12 @@ export interface ActivityEvent {
   url?: string;
 }
 
+export interface Education {
+  text: string;
+  date?: string;
+  url?: string;
+}
+
 export interface Certification {
   text: string;
   date: string;
@@ -54,7 +60,6 @@ export interface Hobby {
   id: string;
   title: string;
   description: string;
-  image: string;
 }
 
 const data = {
@@ -78,7 +83,7 @@ Drawing on a lifelong engagement with music and my perspective as someone with h
         { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
         { text: 'Digital Nature Group (Yoichi Ochiai Laboratory) - Affiliation', date: 'Jan 2025', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
         { text: 'Lab Member Page', url: 'https://digitalnature.slis.tsukuba.ac.jp/2025/12/rikuto-hashizume/' },
-      ],
+      ] as Education[],
     },
     achievements: {
       certifications: [
@@ -199,37 +204,37 @@ The project was executed on Google Colab.`,
         id: '1',
         title: 'Music',
         description: 'Enjoying live concerts and festivals, and playing electric guitar and piano.',
-        image: '/images/hobbies/music.jpg',
+
       },
       {
         id: '2',
         title: 'Sports',
         description: 'Skiing, tennis, and soccer.',
-        image: '/images/hobbies/sports.jpg',
+
       },
       {
         id: '3',
         title: 'Movies',
         description: 'Favorite films include LEON, The Invisible Guest, and Harry Potter series.',
-        image: '/images/hobbies/movies.jpg',
+
       },
       {
         id: '4',
         title: 'Travel',
         description: 'Exploring new places and cultures.',
-        image: '/images/hobbies/travel.jpg',
+
       },
       {
         id: '5',
         title: 'Games',
         description: 'Enjoying various video games.',
-        image: '/images/hobbies/games.jpg',
+
       },
       {
         id: '6',
         title: 'Personal Development',
         description: 'Personal projects, English learning, and participating in Kaggle competitions.',
-        image: '/images/hobbies/development.jpg',
+
       },
     ],
     sections: {
@@ -272,7 +277,7 @@ Webエンジニアリング, データサイエンス, 音響学, 認知科学, 
         { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
         { text: 'Digital Nature Group(落合陽一研究室)　所属', date: '2025年1月', url: 'https://digitalnature.slis.tsukuba.ac.jp/' },
         { text: '所属研究室 個人ページ', url: 'https://digitalnature.slis.tsukuba.ac.jp/2025/12/rikuto-hashizume/' },
-      ],
+      ] as Education[],
     },
     achievements: {
       certifications: [
@@ -395,37 +400,37 @@ Google Colabでの実行を行いました。`,
         id: '1',
         title: '音楽',
         description: 'ライブやフェスに行くことと、エレキギターやピアノを演奏することが好きです。',
-        image: '/images/hobbies/music.jpg',
+
       },
       {
         id: '2',
         title: 'スポーツ',
         description: 'スキー、テニス、サッカーを楽しんでいます。',
-        image: '/images/hobbies/sports.jpg',
+
       },
       {
         id: '3',
         title: '映画',
         description: 'LEON、インビジブルゲスト、ハリーポッターシリーズなどが好きです。',
-        image: '/images/hobbies/movies.jpg',
+
       },
       {
         id: '4',
         title: '旅行',
         description: '新しい場所や文化を探索することが好きです。',
-        image: '/images/hobbies/travel.jpg',
+
       },
       {
         id: '5',
         title: 'ゲーム',
         description: '様々なビデオゲームを楽しんでいます。',
-        image: '/images/hobbies/games.jpg',
+
       },
       {
         id: '6',
         title: '個人開発・学習',
         description: '個人開発プロジェクト、英語学習、Kaggleへの参加をしています。',
-        image: '/images/hobbies/development.jpg',
+
       },
     ],
     sections: {

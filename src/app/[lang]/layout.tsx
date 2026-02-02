@@ -23,12 +23,12 @@ export async function generateMetadata({
 
   const title = 'Rikuto Hashizume | Portfolio';
   const description = isJa
-    ? 'データサイエンス、Webエンジニアリング、ロボティクスを横断するジェネラリストエンジニア。複雑な技術から本質的な価値を抽出し、ビジネスやユーザーに届ける架け橋となることを目指しています。筑波大学所属。'
-    : 'A generalist engineer spanning Data Science, Web Engineering, and Robotics. Aiming to bridge the gap between complex technology and essential value for businesses and users. Based at the University of Tsukuba.';
+    ? '幅広い領域を横断するジェネラリストエンジニア。複雑な技術と本質的な価値をつなぐ架け橋を目指しています。筑波大学所属。'
+    : 'A generalist engineer across diverse fields. Bridging complex technology and essential value. Based at the University of Tsukuba.';
 
   const ogDescription = isJa
-    ? 'データサイエンス、Webエンジニアリング、ロボティクスを横断するジェネラリストエンジニア。複雑な技術から本質的な価値を抽出し、ビジネスやユーザーに届ける架け橋となることを目指しています。'
-    : 'A generalist engineer spanning Data Science, Web Engineering, and Robotics. Bridging complex technology and essential value.';
+    ? '幅広い領域を横断するジェネラリストエンジニア。複雑な技術と本質的な価値をつなぐ架け橋を目指しています。'
+    : 'A generalist engineer across diverse fields. Bridging complex technology and essential value.';
 
   const altLang = isJa ? 'en' : 'ja';
 
@@ -101,8 +101,8 @@ export default function LangLayout({
     jobTitle: 'Student Engineer',
     description:
       lang === 'ja'
-        ? 'データサイエンス、Webエンジニアリング、ロボティクスを横断するジェネラリストエンジニア。複雑な技術から本質的な価値を抽出し、ビジネスやユーザーに届ける架け橋となることを目指しています。'
-        : 'A generalist engineer spanning Data Science, Web Engineering, and Robotics. Bridging complex technology and essential value.',
+        ? '幅広い領域を横断するジェネラリストエンジニア。複雑な技術と本質的な価値をつなぐ架け橋を目指しています。'
+        : 'A generalist engineer across diverse fields. Bridging complex technology and essential value.',
     email: emailAddress,
     sameAs: socialLinks.map((link) => link.url),
     alumniOf: {
@@ -112,9 +112,10 @@ export default function LangLayout({
     knowsAbout: [
       'Data Science',
       'Web Engineering',
-      'Robotics',
+      'Acoustics',
+      'Cognitive Science',
+      'HCI',
       'Machine Learning',
-      'Generative Art',
       'TypeScript',
       'Python',
       'React',

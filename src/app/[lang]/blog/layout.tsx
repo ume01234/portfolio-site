@@ -4,7 +4,7 @@
 // - ItemList構造化データ（ブログ記事一覧）
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { getData, siteUrl, blogPostsData, type Language } from '@/lib/data';
+import { getData, siteUrl, type Language } from '@/lib/data';
 
 export async function generateMetadata({
   params,
@@ -84,10 +84,10 @@ export default function BlogLayout({
   };
 
   // ブログ記事一覧の構造化データ（ItemList）- Google検索向け
-  const itemList = blogPostsData.length > 0 ? {
+  const itemList = data.blogPosts.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: blogPostsData.map((post, index) => ({
+    itemListElement: data.blogPosts.map((post, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {

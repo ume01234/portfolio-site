@@ -303,9 +303,11 @@ export default function Home() {
                 <ul className="space-y-2 border-l-2 border-coffee-brown/20 pl-6">
                   {data.profileData.education.map((item, index) => (
                     <li key={index} className="text-coffee-dark font-medium whitespace-nowrap flex">
-                      <span className="text-coffee-dark/50 font-mono text-sm mr-2 inline-block min-w-[5rem] shrink-0">{item.date}</span>
+                      {item.date && (
+                        <span className="text-coffee-dark/50 font-mono text-sm mr-2 inline-block min-w-[5rem] shrink-0">{item.date}</span>
+                      )}
                       {item.url ? (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-coffee-brown transition-colors">
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className={`underline hover:text-coffee-brown transition-colors${!item.date ? ' ml-[calc(5rem+0.5rem)]' : ''}`}>
                           {item.text}
                         </a>
                       ) : (
