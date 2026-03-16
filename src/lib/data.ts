@@ -66,18 +66,13 @@ const data = {
   en: {
     profileData: {
       name: 'Rikuto Hashizume',
-      catchCopy: 'The Brewing Engineer',
-      vision: 'Creating new worlds through technology',
-      aboutMe: `From Sanda, Hyogo.
-Data science, web engineering, acoustics, cognitive science,
-HCI, philosophy, physics — a generalist fascinated by a wide range of fields.
+      catchCopy: 'Brewed on curiosity.',
+      aboutMe: `Immersed in music since childhood, and having experienced changes in my own hearing, I came to face the question: "How do we design musical experiences?"
 
-In an era where technology and society are changing at a dizzying pace,
-we need **bridges** that connect complex technology with essential value.
-My goal is to become someone who can **translate technology into meaningful experiences**.
+I want to be someone who can find the complexity of the world genuinely interesting — as it is.
+Music, perception, technology — standing on a deep understanding of that complexity, I want to bridge people living in different contexts. Explaining, dialoguing, building bridges. That is how I want to reach out to the wider world.
 
-I actively share my work in English and aim to expand my reach globally.
-Drawing on my experience of being close to music since childhood and my perspective as someone with a hearing disability, my current graduation research explores the **intersection of music and accessibility**.`,
+Currently researching HCI and music accessibility at the Ochiai Lab, University of Tsukuba, while continuing to build as an engineer.`,
       education: [
         { text: 'University of Tsukuba, College of General Studies, Science Group 3 - Enrollment', date: 'Apr 2023' },
         { text: 'University of Tsukuba, School of Informatics, Media Sciences - Transfer', date: 'Apr 2024' },
@@ -90,9 +85,10 @@ Drawing on my experience of being close to music since childhood and my perspect
         { text: 'EIKEN Grade Pre-1', date: 'Nov 2022' },
         { text: 'Fundamental Information Technology Engineer', date: 'Sep 2024' },
         { text: "Regular Driver's License", date: 'Oct 2024' },
+        { text: 'E-Certification (JDLA)', date: 'Feb 2026' },
       ],
       activityEvents: [
-        { id: '1', title: 'E-Certification Preparation Course (Completed)', description: 'Acquired advanced AI engineering knowledge connecting deep learning fundamentals to E-Certification qualification. Tech stack: Python(PyTorch) / Numpy / Applied Mathematics / Model Optimization / Backpropagation', date: 'Jan 2026', category: 'lecture' as const },
+        { id: '1', title: 'E-Certification Preparation Course (Completed & Passed)', description: 'Acquired advanced AI engineering knowledge connecting deep learning fundamentals to E-Certification qualification. Tech stack: Python(PyTorch) / Numpy / Applied Mathematics / Model Optimization / Backpropagation', date: 'Feb 2026', category: 'lecture' as const },
         // Company: Queue Inc. (disclosure pending approval)
         { id: '2', title: 'Contract Engineer', description: 'Database migration (Supabase) and feature improvements for a business support application that centrally manages advertising and listing information across multiple web services. Tech stack: Go / TypeScript / Supabase', date: 'Dec 2025 - Present', category: 'intern' as const },
         { id: '3', title: 'Security Mini Camp 2025 Online (IPA) - Participated', description: 'Cross-disciplinary learning covering LLM application threat analysis, multi-agent systems, and RFC-based protocol implementation. Tech stack: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: 'Oct 2025', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
@@ -259,19 +255,14 @@ The project was executed on Google Colab.`,
   ja: {
     profileData: {
       name: '橋爪 陸人',
-      catchCopy: '技術と感性を、一杯の価値へ',
-      vision: '技術を通じて新しい世界を創造する',
-      aboutMe: `兵庫県三田市出身。
-Webエンジニアリング, データサイエンス, 音響学, 認知科学, HCI, 哲学, 物理学
-——幅広い領域に魅了されているジェネラリスト。
+      catchCopy: '好奇心を、味わう。',
+      aboutMe: `幼少期から音楽に没頭し、自身の聴覚変化を経験したことで、
+「音楽体験をどう設計するか」という問いに向き合うようになった。
 
-技術も社会も目まぐるしく変化する時代だからこそ、  
-複雑な技術と本質的な価値をつなぐ**架け橋**が必要である。
-私が目指すのは、技術を**意味のある体験に翻訳**できる人。
+複雑な世界を複雑なまま面白がれる人間でありたいと思っている。
+音楽も、知覚も、技術も——その複雑さへの深い理解を土台にして、異なる文脈を生きる人たちの間に立ちたい。説明すること、対話すること、橋をかけること。そうして外の世界に向かっていきたい。
 
-英語で積極的に発信しており、世界に活動の場を広げていきたいと考えている。
-幼少期から音楽に親しんできた経験と、聴覚障害の当事者としての視点を活かし、  
-現在卒業研究にて**音楽とアクセシビリティの交差点**を探っている。`,
+現在は筑波大学落合研にてHCIと音楽アクセシビリティを研究しながら、エンジニアとしても手を動かし続けている。`,
       education: [
         { text: '筑波大学総合学域群 理系3　入学', date: '2023年4月' },
         { text: '筑波大学 情報学群メディア創成学類　移行', date: '2024年4月' },
@@ -284,9 +275,10 @@ Webエンジニアリング, データサイエンス, 音響学, 認知科学, 
         { text: '実用英語検定準一級', date: '2022年11月' },
         { text: '基本情報技術者', date: '2024年9月' },
         { text: '普通自動車免許', date: '2024年10月' },
+        { text: 'E資格(JDLA)', date: '2026年2月' },
       ],
       activityEvents: [
-        { id: '1', title: 'E資格対策講座 修了', description: '深層学習基礎講座修了からE資格合格までを接続する高度なAIエンジニアリング知識を習得。技術スタック: Python(PyTorch) / Numpy / 応用数学 / モデル最適化 / 誤差逆伝播法', date: '2026年1月', category: 'lecture' as const },
+        { id: '1', title: 'E資格対策講座修了, 合格', description: '深層学習基礎講座修了からE資格合格までを接続する高度なAIエンジニアリング知識を習得。技術スタック: Python(PyTorch) / Numpy / 応用数学 / モデル最適化 / 誤差逆伝播法', date: '2026年2月', category: 'lecture' as const },
         // 会社名: Queue株式会社（公開許可確認中）
         { id: '2', title: 'エンジニア(業務委託開発)', description: '複数Webサービスに対する広告・掲載情報を一元管理する業務支援アプリケーションにおいてデータベース基盤の移行(Supabase)および関連機能の改修。技術スタック: Go / TypeScript / Supabase', date: '2025年12月~現在', category: 'intern' as const },
         { id: '3', title: 'セキュリティ・キャンプミニ2025オンライン (IPA主催) 参加', description: 'LLMアプリケーションの脅威分析やマルチエージェントシステム,RFCに基づくプロトコル実装を含む技術を横断的に学習。技術スタック: Rust / Python / x86 Assembly / LLM Security / Reverse Engineering', date: '2025年10月', category: 'lecture' as const, url: 'https://www.security-camp.or.jp/minicamp/online2025.html' },
