@@ -24,5 +24,10 @@ async function fixHtmlLang(dir, lang) {
   }
 }
 
-await fixHtmlLang(join(outDir, 'ja'), 'ja');
-console.log('Postbuild: html lang attributes fixed.');
+try {
+  await fixHtmlLang(join(outDir, 'ja'), 'ja');
+  console.log('Postbuild: html lang attributes fixed.');
+} catch (err) {
+  console.error('Postbuild: failed to fix html lang attributes:', err);
+  process.exit(1);
+}

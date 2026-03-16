@@ -47,8 +47,9 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
     openGraph: {
       title: cleanTitle,
       description: work.description,
-      url: `${siteUrl}/${lang}/works/${work.id}`,
+      url: `${siteUrl}/${lang}/works/${work.id}/`,
       locale: lang === 'ja' ? 'ja_JP' : 'en_US',
+      alternateLocale: lang === 'ja' ? 'en_US' : 'ja_JP',
       type: 'website',
       images: [
         {
@@ -66,10 +67,10 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
       images: ['/images/ogp-image.webp'],
     },
     alternates: {
-      canonical: `${siteUrl}/${lang}/works/${work.id}`,
+      canonical: `${siteUrl}/${lang}/works/${work.id}/`,
       languages: {
-        en: `${siteUrl}/en/works/${work.id}`,
-        ja: `${siteUrl}/ja/works/${work.id}`,
+        en: `${siteUrl}/en/works/${work.id}/`,
+        ja: `${siteUrl}/ja/works/${work.id}/`,
       },
     },
   };
@@ -99,13 +100,13 @@ export default function WorkDetailPage({ params }: WorkDetailPageProps) {
         '@type': 'ListItem',
         position: 2,
         name: data.sections.works,
-        item: `${siteUrl}/${lang}/works`,
+        item: `${siteUrl}/${lang}/works/`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: work.title,
-        item: `${siteUrl}/${lang}/works/${work.id}`,
+        item: `${siteUrl}/${lang}/works/${work.id}/`,
       },
     ],
   };

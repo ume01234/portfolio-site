@@ -32,7 +32,7 @@ export default function LayoutClient({
 
   // 初回マウント時：言語切替なら即表示、それ以外はオープニング再生
   useEffect(() => {
-    if ((window as any).__skipOpening) {
+    if (window.__skipOpening) {
       isSkipRef.current = true;
       setShowContent(true);
     } else {

@@ -24,8 +24,9 @@ export async function generateMetadata({
     openGraph: {
       title: `${data.sections.activityEvents} | Rikuto Hashizume`,
       description,
-      url: `${siteUrl}/${lang}/activities`,
+      url: `${siteUrl}/${lang}/activities/`,
       locale: isJa ? 'ja_JP' : 'en_US',
+      alternateLocale: isJa ? 'en_US' : 'ja_JP',
       type: 'website',
       images: [
         {
@@ -43,10 +44,10 @@ export async function generateMetadata({
       images: ['/images/ogp-image.webp'],
     },
     alternates: {
-      canonical: `${siteUrl}/${lang}/activities`,
+      canonical: `${siteUrl}/${lang}/activities/`,
       languages: {
-        en: `${siteUrl}/en/activities`,
-        ja: `${siteUrl}/ja/activities`,
+        en: `${siteUrl}/en/activities/`,
+        ja: `${siteUrl}/ja/activities/`,
       },
     },
   };
@@ -77,7 +78,7 @@ export default function ActivitiesLayout({
         '@type': 'ListItem',
         position: 2,
         name: data.sections.activityEvents,
-        item: `${siteUrl}/${lang}/activities`,
+        item: `${siteUrl}/${lang}/activities/`,
       },
     ],
   };

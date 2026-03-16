@@ -4,6 +4,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { siteUrl } from '@/lib/data';
 
 export default function RootPage() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function RootPage() {
 
   return (
     <>
-      <link rel="canonical" href="https://z-ume01234.pages.dev/en/" />
+      <link rel="canonical" href={`${siteUrl}/en/`} />
       <noscript>
         <meta httpEquiv="refresh" content="0;url=/en/" />
       </noscript>

@@ -29,7 +29,7 @@ function stripHtml(str) {
 // --- Medium RSS ---
 async function fetchMedium() {
   const url = 'https://medium.com/feed/@zume2.dev';
-  const res = await fetch(url);
+  const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
   if (!res.ok) throw new Error(`Medium fetch failed: ${res.status}`);
   const xml = await res.text();
 
@@ -76,7 +76,7 @@ async function fetchMedium() {
 // --- Zenn API ---
 async function fetchZenn() {
   const url = 'https://zenn.dev/api/articles?username=sunlight_white';
-  const res = await fetch(url);
+  const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
   if (!res.ok) throw new Error(`Zenn fetch failed: ${res.status}`);
   const json = await res.json();
 

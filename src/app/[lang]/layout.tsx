@@ -52,6 +52,7 @@ export async function generateMetadata({
       url: `${siteUrl}/${lang}/`,
       siteName: 'Rikuto Hashizume | Portfolio',
       locale: isJa ? 'ja_JP' : 'en_US',
+      alternateLocale: isJa ? 'en_US' : 'ja_JP',
       type: 'website',
       images: [
         {
@@ -97,7 +98,7 @@ export default function LangLayout({
     '@type': 'Person',
     name: 'Rikuto Hashizume',
     alternateName: ['橋爪 陸人', 'Hashizume Rikuto'],
-    url: siteUrl,
+    url: `${siteUrl}/`,
     jobTitle: 'Student Engineer',
     description:
       lang === 'ja'

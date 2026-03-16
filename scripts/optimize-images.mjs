@@ -57,7 +57,12 @@ async function convertFaceImage() {
 }
 
 console.log('--- optimize-images ---');
-await convertWorksImages();
-await convertOgpImage();
-await convertFaceImage();
-console.log('--- done ---');
+try {
+  await convertWorksImages();
+  await convertOgpImage();
+  await convertFaceImage();
+  console.log('--- done ---');
+} catch (err) {
+  console.error('optimize-images: failed:', err);
+  process.exit(1);
+}

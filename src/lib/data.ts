@@ -255,7 +255,7 @@ The project was executed on Google Colab.`,
   ja: {
     profileData: {
       name: '橋爪 陸人',
-      catchCopy: '好奇心を、味わう。',
+      catchCopy: '好奇心を味わう。',
       aboutMe: `幼少期から音楽に没頭し、自身の聴覚変化を経験したことで、
 「音楽体験をどう設計するか」という問いに向き合うようになった。
 

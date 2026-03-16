@@ -15,7 +15,7 @@ export default function LanguageSwitcher() {
   const toggleLanguage = () => {
     const targetLang = language === 'en' ? 'ja' : 'en';
     const newPath = pathname.replace(/^\/(en|ja)/, `/${targetLang}`);
-    (window as any).__skipOpening = true; // オープニングアニメーションをスキップするフラグ
+    window.__skipOpening = true; // オープニングアニメーションをスキップするフラグ
     router.push(newPath);
   };
 

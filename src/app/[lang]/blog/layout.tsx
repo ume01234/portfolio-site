@@ -25,8 +25,9 @@ export async function generateMetadata({
     openGraph: {
       title: `${data.sections.blog} | Rikuto Hashizume`,
       description,
-      url: `${siteUrl}/${lang}/blog`,
+      url: `${siteUrl}/${lang}/blog/`,
       locale: isJa ? 'ja_JP' : 'en_US',
+      alternateLocale: isJa ? 'en_US' : 'ja_JP',
       type: 'website',
       images: [
         {
@@ -44,10 +45,10 @@ export async function generateMetadata({
       images: ['/images/ogp-image.webp'],
     },
     alternates: {
-      canonical: `${siteUrl}/${lang}/blog`,
+      canonical: `${siteUrl}/${lang}/blog/`,
       languages: {
-        en: `${siteUrl}/en/blog`,
-        ja: `${siteUrl}/ja/blog`,
+        en: `${siteUrl}/en/blog/`,
+        ja: `${siteUrl}/ja/blog/`,
       },
     },
   };
@@ -78,7 +79,7 @@ export default function BlogLayout({
         '@type': 'ListItem',
         position: 2,
         name: data.sections.blog,
-        item: `${siteUrl}/${lang}/blog`,
+        item: `${siteUrl}/${lang}/blog/`,
       },
     ],
   };
