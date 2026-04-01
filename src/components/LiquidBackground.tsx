@@ -29,6 +29,9 @@ export default function LiquidBackground({ scrollProgress, fixedPosition = false
     const svg = svgRef.current;
     if (!svg) return;
 
+    // prefers-reduced-motion が有効な場合は静的な水面を表示
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const paths = svg.querySelectorAll('path');
     let animationId: number;
     let time = 0;
@@ -40,9 +43,29 @@ export default function LiquidBackground({ scrollProgress, fixedPosition = false
       { speed: 0.004, amp: 4, freq: 0.03, offset: 4 },    // 手前
     ];
 
+    // 静的な水面パスを生成する関数
+    const setStaticPaths = () => {
+      const currentProgress = progressRef.current;
+      const progress = fixedPosition ? 0 : currentProgress;
+      const baseY = 15 + (progress * 105);
+
+      paths.forEach(() => {
+        // フラットな水面
+      });
+      paths.forEach((path) => {
+        const pathData = `M 0,100 L 0,${baseY} L 100,${baseY} L 100,100 Z`;
+        path.setAttribute('d', pathData);
+      });
+    };
+
+    if (prefersReducedMotion) {
+      setStaticPaths();
+      return;
+    }
+
     const animate = () => {
       time += 1;
-      
+
       // Refから最新の進捗を取得
       const currentProgress = progressRef.current;
 
@@ -52,40 +75,40 @@ export default function LiquidBackground({ scrollProgress, fixedPosition = false
       // モバイル版で固定位置の場合は、高い位置（満タン）で固定
       const progress = fixedPosition ? 0 : currentProgress;
       const baseY = 15 + (progress * 105);
-      
+
       paths.forEach((path, layerIndex) => {
-        const layer = layers[layerIndex % layers.length]; 
+        const layer = layers[layerIndex % layers.length];
         const points = [];
-        const segments = 40; 
-        
+        const segments = 40;
+
         for (let i = 0; i <= segments; i++) {
           const x = (i / segments) * 100;
-          
+
           // ノイズのような動きを作るための波の合成
           const y1 = Math.sin(time * layer.speed + x * layer.freq + layer.offset);
           const y2 = Math.sin(time * layer.speed * 1.5 + x * layer.freq * 2.5) * 0.3;
-          
+
           // 進捗に合わせて波を少し穏やかにする（液体が減る演出）
           // fixedPositionの場合は常に満タン状態なので、dampenerは1.0
           const progressForDampener = fixedPosition ? 0 : currentProgress;
           const dampener = Math.max(0.2, 1 - (progressForDampener * 0.8));
           const waveY = (y1 + y2) * layer.amp * dampener;
-          
+
           points.push([x, baseY + waveY]);
         }
 
         const pathData = [
-          `M 0,100`, 
-          `L 0,${points[0][1]}`, 
-          ...points.map(p => `L ${p[0]},${p[1]}`), 
-          `L 100,${points[points.length - 1][1]}`, 
-          `L 100,100`, 
+          `M 0,100`,
+          `L 0,${points[0][1]}`,
+          ...points.map(p => `L ${p[0]},${p[1]}`),
+          `L 100,${points[points.length - 1][1]}`,
+          `L 100,100`,
           `Z`
         ].join(' ');
 
         path.setAttribute('d', pathData);
       });
-      
+
       animationId = requestAnimationFrame(animate);
     };
 

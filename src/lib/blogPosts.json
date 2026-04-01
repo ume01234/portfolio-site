@@ -1,6 +1,24 @@
 [
   {
     "id": "1",
+    "title": "My Daily Life as an Information Science Student, with AI",
+    "subtitle": "From study tools and research to part-time work and personal exploration— how AI has quietly worked its way in",
+    "url": "https://medium.com/@zume2.dev/my-daily-life-as-an-information-science-student-with-ai-faa56e53f226",
+    "date": "2026-03-31",
+    "platform": "Medium",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/0*d6nJ_Kvmf-KoTqHq"
+  },
+  {
+    "id": "2",
+    "title": "Fine-Tuning an Image Captioning Model on Art — With Nothing but a Free GPU",
+    "subtitle": "Lessons from adapting GiT to paintings using LoRA under real-world constraints",
+    "url": "https://medium.com/@zume2.dev/fine-tuning-an-image-captioning-model-on-art-with-nothing-but-a-free-gpu-974b6052a173",
+    "date": "2026-03-17",
+    "platform": "Medium",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*P7nr8THgvsbikLTBL6sheQ.png"
+  },
+  {
+    "id": "3",
     "title": "Building a Time Bomb Game with only a starter Kit",
     "subtitle": "My First Electronics Project with Elegoo Super Starter Kit",
     "url": "https://medium.com/@zume2.dev/building-a-time-bomb-game-8e5eef64b8fa",
@@ -9,7 +27,7 @@
     "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*Om0UvRQ8NAuNqheuy-57Ug.jpeg"
   },
   {
-    "id": "2",
+    "id": "4",
     "title": "My First Exhibition with p5.js",
     "subtitle": "I recently exhibited my piece, “Mandala Structure Transformed by Distance,” at a university exhibition called “Siiiice.”",
     "url": "https://medium.com/@zume2.dev/first-exhibition-6c583198aa74",
@@ -18,7 +36,7 @@
     "thumbnail": "https://cdn-images-1.medium.com/max/814/1*GP1cX3gWSOcyc_JAAY7fUw.png"
   },
   {
-    "id": "3",
+    "id": "5",
     "title": "[First Post]: My Journey to Synthesize Data, Art, and Business Strategy",
     "subtitle": "A self-introduction and the philosophy behind my journey.",
     "url": "https://medium.com/@zume2.dev/first-post-my-journey-to-synthesize-data-art-and-business-strategy-a617434306a8",

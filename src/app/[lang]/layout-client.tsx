@@ -6,6 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { MotionConfig } from 'framer-motion';
 import OpeningAnimation from '@/components/OpeningAnimation';
 import SteamCursor from '@/components/SteamCursor';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -46,20 +47,22 @@ export default function LayoutClient({
   };
 
   return (
-    <LanguageProvider lang={lang}>
-      {/* オープニングアニメーション（fixed z-50のオーバーレイ、完了後に除去） */}
-      {showOpening && (
-        <OpeningAnimation onComplete={handleOpeningComplete} />
-      )}
+    <MotionConfig reducedMotion="user">
+      <LanguageProvider lang={lang}>
+        {/* オープニングアニメーション（fixed z-50のオーバーレイ、完了後に除去） */}
+        {showOpening && (
+          <OpeningAnimation onComplete={handleOpeningComplete} />
+        )}
 
-      {/* カーソルエフェクト（コンテンツ表示後にマウント、不要なリスナー登録を防ぐ） */}
-      {showContent && <SteamCursor />}
+        {/* カーソルエフェクト（コンテンツ表示後にマウント、不要なリスナー登録を防ぐ） */}
+        {showContent && <SteamCursor />}
 
-      {/* メインコンテンツ：常にDOMに存在し、CSSで表示制御（SSR時もHTMLに出力される） */}
-      <div className={`${isSkipRef.current ? '' : 'transition-opacity duration-300'} ${showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <LanguageSwitcher />
-        {children}
-      </div>
-    </LanguageProvider>
+        {/* メインコンテンツ：常にDOMに存在し、CSSで表示制御（SSR時もHTMLに出力される） */}
+        <div className={`${isSkipRef.current ? '' : 'transition-opacity duration-300'} ${showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          <LanguageSwitcher />
+          {children}
+        </div>
+      </LanguageProvider>
+    </MotionConfig>
   );
 }

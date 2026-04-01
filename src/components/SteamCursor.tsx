@@ -7,6 +7,9 @@ export default function SteamCursor() {
   const [steams, setSteams] = useState<{ id: number; x: number; y: number }[]>([]);
 
   useEffect(() => {
+    // prefers-reduced-motion が有効な場合はカーソルエフェクトを無効化
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       // 負荷軽減のため、マウスイベントの間引き（数回に1回だけ生成）
       if (Math.random() > 0.3) return;
